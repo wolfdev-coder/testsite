@@ -1,0 +1,1472 @@
+	header.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 28px;
+    background: linear-gradient(135deg, var(--header-wave-bg-gradient-color-1) 0%, var(--header-wave-bg-gradient-color-2) 100%);
+    color: var(--text-primary);
+    flex-wrap: wrap;
+    gap: 12px;
+    position: fixed; /* Закрепляем header */
+    top: 0; /* Привязываем к верхней части окна */
+    left: 0;
+    width: 100%; /* Полная ширина */
+    z-index: 1000;
+		transition: all 0.5s ease-in-out;
+}
+
+/* Серый градиент (ваш исходный) */
+header.header::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(135deg, #555 0%, #666 100%);
+    left: 0;
+    bottom: 0px;
+}
+
+/* Желтый растущий блок */
+header.header::before {
+    content: '';
+    position: absolute;
+    width: var(--yellow-width, 0); /* Ширина управляется через переменную */
+    height: 4px;
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%); /* Желтый градиент */
+    left: 0;
+    bottom: 0px;
+    z-index: 1; /* Желтый поверх серого */
+    transition: width 0.3s ease; /* Плавная анимация */
+}
+
+	@media (max-width: 769px) {
+		header.header::after {
+			bottom: -4px;
+		}
+		header.header::before {
+			bottom: -4px;
+		}
+	}
+
+	header.header div.left-blocks {
+		display: flex;
+		align-items: center;
+		gap: 22px;
+		justify-content: flex-start;
+	}
+
+	header.header div.right-blocks {
+		display: flex;
+		align-items: center;
+		gap: 22px;
+		justify-content: flex-end;
+	}
+
+	.header-block {
+		/*Вноженность лучше не переназначать*/
+		display: flex;
+		align-items: center;
+	}
+
+	header.header div.left-blocks div.header-block.logo-block {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
+	header.header div.left-blocks div.header-block.logo-block a.logo-link {
+		display: block;
+		line-height: 0;
+	}
+
+	header.header div.left-blocks div.header-block.logo-block a.logo-link img.logo {
+		width: 48px;
+		height: 48px;
+		object-fit: contain;
+	}
+
+	header.header div.left-blocks div.header-block.logo-block div.title-gradient-container {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 6px;
+	}
+
+	header.header div.left-blocks div.header-block.logo-block div.title-gradient-container h1.site-title {
+		font-size: 28px;
+		font-weight: bold;
+	}
+
+	header.header div.left-blocks div.header-block.logo-block div.title-gradient-container div.gradient-block,
+	header.header div.header-block.logo-title-block div.header-block.logo-block div.title-gradient-container div.gradient-block
+	 {
+		width: 100%;
+		height: 4px;
+		background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+		border-radius: 2px;
+	}
+
+	header.header div.header-block.logo-title-block {
+		display: none;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block {
+		position: relative;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block button.menu-button {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 32px;
+		height: 22px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		position: relative;
+		z-index: 20;
+		opacity: 70%;
+		transition: all 0.3s ease-in-out;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block button.menu-button:hover {
+		opacity: 100%;
+		scale: 1.1;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block button.menu-button span.hamburger {
+		display: block;
+		width: 100%;
+		height: 3px;
+		background-color: var(--text-primary);
+		border-radius: 2px;
+		margin: 0;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.menu-dropdown {
+		display: block;
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		width: 250px;
+		background: linear-gradient(135deg, var(--menu-bg-color-1) 0%, var(--menu-bg-color-2) 100%);
+		z-index: 1000;
+		transform: translateX(-100%);
+		transition: transform 0.3s ease-in-out;
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		scrollbar-width: none;
+	}
+
+	.menu-dropdown::-webkit-scrollbar {
+		display: none;
+	}
+
+	.menu-dropdown.active {
+		transform: translateX(0);
+	}
+
+	.menu-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 18px 22px;
+		color: var(--text-primary);
+		position: sticky;
+		top: 0;
+		background: transparent;
+		z-index: 10;
+	}
+
+	.menu-header span {
+		font-size: 24px;
+		font-weight: bold;
+	}
+
+	.menu-dropdown .close-menu {
+		background: none;
+		border: none;
+		color: var(--text-primary);
+		font-size: 24px;
+		cursor: pointer;
+		padding: 0;
+		opacity: 50%;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.close-menu:hover {
+		opacity: 100%;
+	}
+
+	.menu-divider {
+		height: 1px;
+		background-color: var(--divider-bg);
+		margin: 0px 22px;
+		z-index: 1;
+		position: relative;
+	}
+
+	.menu-divider#guest-menu-divider {
+		margin: 10px 0px;
+	}
+
+	.menu-dropdown ul {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		padding: 22px;
+	}
+
+	.menu-dropdown div.select ul.select-dropdown.active {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		padding: 8px !important;
+		gap: 4px;
+	}
+
+	.menu-dropdown.active div.select ul.select-dropdown.active li {
+		/* outline: 1px solid black; */
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: start;
+	}
+
+	.menu-dropdown.active li {
+		display: flex;
+		align-items: center;
+		justify-content: start;
+		opacity: 0%;
+		background: none;
+		border: none;
+		font-size: 15px;
+		color: var(--text-primary);
+		text-align: left;
+		cursor: pointer;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.menu-dropdown.active li {
+		opacity: 100%;
+	}
+
+	.menu-dropdown ul:not(:nth-child(2)) li a {
+		color: var(--text-primary);
+		text-decoration: none;
+		font-size: 17px;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 2px;
+		transition: all 0.3s ease-in-out;
+		padding: 8px 8px;
+		gap: 10px;
+		position: relative;
+	}
+
+	.menu-dropdown ul:not(:nth-child(2)) li a::after {
+		content: '';
+		width: 4px;
+		height: 28px;
+		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+		border-radius: 2px;
+		margin-left: auto;
+		opacity: 1;
+	}
+
+	.menu-dropdown ul:not(:nth-child(2)) li a:hover {
+		color: var(--text-hover);
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 5px;
+		gap: 12px;
+		margin: auto 5px;
+	}
+
+	.menu-dropdown ul:not(:nth-child(2)) li a:active {
+		color: var(--text-hover);
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 15px;
+		margin: auto 10px;
+	}
+
+	.menu-dropdown ul:not(:nth-child(2)) li a img.nav-icon {
+		width: 28px;
+		height: 28px;
+		object-fit: contain;
+	}
+
+	header.header div.header-block.page-title-block {
+		font-size: 20px;
+		cursor: pointer;
+		position: relative;
+	}
+
+	header.header div.header-block.page-title-block nav.page-title-dropdown {
+		visibility: hidden;
+		opacity: 0;
+		transform: translateY(-10px);
+		transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+		position: absolute;
+		top: 100%;
+		left: -100%;
+		transform: translateX(0);
+		width: 230px;
+		background: linear-gradient(135deg, var(--menu-bg-color-1) 0%, var(--menu-bg-color-2) 100%);
+		z-index: 1000;
+		border-radius: 4px;
+		box-shadow: 0 2px 5px var(--shadow-dark);
+		flex-direction: column;
+		display: flex;
+		pointer-events: none;
+		opacity: 0%;
+		transition: all 0.5s ease-in-out;
+	}
+
+	header.header div.header-block.page-title-block nav.page-title-dropdown.active {
+		visibility: visible;
+		opacity: 1;
+		transform: translateY(12%);
+		pointer-events: auto;
+	}
+
+	header.header div.header-block.page-title-block nav.page-title-dropdown ul {
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		padding: 24px;
+	}
+
+	header.header div.header-block.page-title-block nav.page-title-dropdown li {
+		padding: 8px 4px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		transition: all 0.3s ease-in-out;
+	}
+
+	header.header div.header-block.page-title-block nav.page-title-dropdown .nav-icon {
+		width: 30px;
+		height: 30px;
+		object-fit: contain;
+	}
+
+	header.header div.header-block.page-title-block nav.page-title-dropdown ul li a.nav-link {
+		color: var(--text-primary);
+		text-decoration: none;
+		font-size: 17px;
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+	}
+
+	header.header div.header-block.page-title-block nav.page-title-dropdown ul li a.nav-link::after {
+		content: '';
+		width: 4px;
+		height: 28px;
+		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+		border-radius: 2px;
+		margin-left: auto;
+	}
+
+	header.header div.header-block.page-title-block nav.page-title-dropdown li:hover {
+		background: rgba(255, 255, 255, 0.1);
+		color: var(--text-hover);
+		border-radius: 5px;
+		margin: 0 -5px;
+		gap: 12px;
+	}
+	
+	header.header div.header-block.page-title-block nav.page-title-dropdown li:active {
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 10px;
+		margin: 4px 0;
+	}
+
+	header.header div.header-block.page-title-block nav.page-title-dropdown .close-page-menu {
+		background: none;
+		border: none;
+		color: var(--text-primary);
+		font-size: 24px;
+		cursor: pointer;
+		padding: 0;
+		opacity: 50%;
+		transition: all 0.3s ease-in-out;
+	}
+
+	header.header div.header-block.page-title-block nav.page-title-dropdown .close-page-menu:hover {
+		opacity: 100%;
+	}
+
+	header.header div.right-blocks nav.contact-menu {
+		display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    background: linear-gradient(135deg, var(--menu-bg-color-1, #333), var(--menu-bg-color-2, #555));
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    flex-direction: column;
+    opacity: 0;
+	}
+
+	header.header div.right-blocks nav.contact-menu.active {
+		transform: translateX(0);
+    opacity: 1;
+	}
+
+	header.header div.right-blocks nav.contact-menu .contact-block {
+		padding: 22px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	header.header div.right-blocks div.header-block.contact-button-block button.contact-button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		background: url('../img/icons/phone.png') no-repeat center center;
+		background-size: contain;
+		border: none;
+		cursor: pointer;
+		padding: 0;
+		margin: 0;
+		position: relative;
+		z-index: 20;
+		opacity: 70%;
+		transition: all 0.3s ease-in-out;
+	}
+
+	header.header div.right-blocks div.header-block.contact-button-block button.contact-button:hover {
+		opacity: 100%;
+		scale: 1.1;
+	}
+
+	header.header div.right-blocks nav.contact-menu div.menu-header button.close-contact {
+		background: none;
+		border: none;
+		color: var(--text-primary);
+		font-size: 24px;
+		cursor: pointer;
+		padding: 0;
+		opacity: 50%;
+		transition: all 0.3s ease-in-out;
+	}
+
+	header.header div.right-blocks nav.contact-menu div.menu-header button.close-contact:hover {
+		opacity: 100%;
+	}
+
+	header.header div.right-blocks div.header-block.contact-block {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.contact-block .contact-item {
+		/*общий для контактов в шапке и меню*/
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		line-height: 20px;
+		flex: 0 1 auto;
+		text-align: left;
+	}
+
+	.contact-block .contact-item::after {
+		content: '';
+		width: 4px;
+		height: 24px;
+		background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+		border-radius: 2px;
+		margin-left: auto;
+	}
+
+	.contact-block .contact-item .contact-icon {
+		/*общий для контактов в шапке и меню*/
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+	}
+
+	.contact-block .contact-item span {
+		/*общий для контактов в шапке и меню*/
+		font-size: 14px;
+	}
+
+	/* .header .guest-block .menu-divider */
+	header.header div.right-blocks div.header-block div.guest-block div.menu-divider {
+		margin: 5px 0;
+		display: none;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown .location-block {
+		padding: 22px;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown .menu-account-block {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 8px;
+		color: var(--text-primary);
+		flex-direction: row;
+		gap: 10px;
+		margin-top: auto;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown .menu-account-block, 
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown div.menu-account-block div{
+		animation: menuAccountBlockFadeIn 0.3s ease forwards;
+	}
+	
+	/* Keyframes for account block appearance */
+	@keyframes menuAccountBlockFadeIn {
+			from {
+					opacity: 0;
+					transform: translateX(20px); /* Slide in from the right */
+			}
+			to {
+					opacity: 1;
+					transform: translateX(0);
+			}
+	}
+
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown .menu-account-block .account-info {
+		display: flex;
+		flex-direction: column;
+		text-align: left;
+		gap: 3px;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown .menu-account-block .username {
+		font-weight: bold;
+		font-size: 15px;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown .menu-account-block .user-email,
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown .menu-account-block .user-region {
+		font-size: 14px;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown .menu-account-block .guest-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		width: 205px;
+	}
+
+	header.header div.left-blocks .header-block.location-block div.select {
+		position: relative;
+		display: flex;
+		width: 12em;
+		height: 2em;
+		border-radius: 0.25em;
+		overflow: visible;
+		background-color: var(--input-bg);
+		z-index: 10;
+	}
+
+	header.header div.left-blocks .header-block.location-block div.select::after {
+		content: '\25BC';
+		position: absolute;
+		top: 50%;
+		right: 0;
+		width: 32px;
+		height: 32px;
+		background-color: var(--button-bg);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transform: translateY(-50%);
+		transition: .25s all ease;
+		pointer-events: none;
+		border-radius: 0 4px 4px 0;
+	}
+
+	header.header div.left-blocks .header-block.location-block div.select:hover::after {
+		color: var(--accent-primary);
+		scale: 1.1;
+		transform: translateY(-45%) !important;
+	}
+
+	header.header div.left-blocks .header-block.location-block div.select .select-button {
+		flex: 1;
+		padding: 0 1em;
+		color: var(--text-primary);
+		background-color: var(--dropdown-bg);
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 16px;
+		user-select: none;
+		border-radius: 8px;
+	}
+
+	.select-dropdown {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background-color: var(--dropdown-bg);
+		list-style: none;
+		max-height: 0;
+		overflow-y: auto;
+		transition: max-height 0.3s ease, opacity 0.3s ease;
+		opacity: 0;
+		z-index: 15;
+		border-radius: 0 0 .25em .25em;
+		box-shadow: 0 2px 5px var(--shadow-accent);
+		scrollbar-width: thin;
+		scrollbar-color: var(--accent-primary) var(--scrollbar-track);
+	}
+
+	.select-dropdown::-webkit-scrollbar {
+		width: 4px;
+	}
+
+	.select-dropdown::-webkit-scrollbar-track {
+		background: var(--scrollbar-track);
+	}
+
+	.select-dropdown::-webkit-scrollbar-thumb {
+		background: var(--accent-primary);
+		border-radius: 2px;
+	}
+
+	.select-dropdown::-webkit-scrollbar-thumb:hover {
+		background: var(--accent-secondary);
+	}
+
+	.select-dropdown.active {
+		max-height: 150px;
+		opacity: 1;
+	}
+
+	.select-dropdown li {
+		padding: 0.8em 1em;
+		color: var(--text-primary);
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+	}
+
+	.select-dropdown li:hover {
+		background-color: var(--button-bg);
+	}
+
+	header.header div.right-blocks div#dynamic-account-block.header-block div.account-block {
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: center;
+		min-height: 48px;
+		justify-content: flex-end;
+		animation: accountFadeIn 0.3s ease forwards; /* Animation on appearance */
+	}
+	
+	/* Keyframes for account block appearance */
+	@keyframes accountFadeIn {
+			from {
+					opacity: 0;
+					gap: 0px;
+					transform: translateX(10px); /* Slide in from the right */
+			}
+			to {
+					opacity: 1;
+					gap: 12px;
+					transform: translateX(0);
+			}
+	}
+
+	header.header div.right-blocks div#dynamic-account-block.header-block div.account-block .account-info {
+		display: flex;
+		flex-direction: column;
+		text-align: right;
+	}
+
+	header.header div.right-blocks div#dynamic-account-block.header-block div.account-block div.account-info span.username {
+		font-weight: bold;
+		font-size: 15px;
+	}
+
+	header.header div.right-blocks div#dynamic-account-block.header-block div.account-block div.account-info span.user-email,
+	header.header div.right-blocks div#dynamic-account-block.header-block div.account-block div.account-info span.user-region {
+		font-size: 13px;
+	}
+
+	header.header div.right-blocks div#dynamic-account-block.header-block div.account-block button.profile-photo-block {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		overflow: hidden;
+		cursor: pointer;
+		flex-shrink: 0;
+		background: transparent;
+		border: 2px solid var(--text-primary);
+		transition: all 0.3s ease-in-out;
+	}
+
+	header.header div.right-blocks div#dynamic-account-block.header-block div.account-block button.profile-photo-block:hover {
+		scale: 1.05;
+	}
+
+	header.header div.right-blocks div#dynamic-account-block.header-block div.account-block button.profile-photo-block img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 50%;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown div#dynamic-menu-account-block.menu-account-block div.menu-account-block button.profile-photo-block {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		overflow: hidden;
+		cursor: pointer;
+		flex-shrink: 0;
+		background: transparent;
+		border: 2px solid var(--text-primary);
+		transition: all 0.3s ease-in-out;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown div#dynamic-menu-account-block.menu-account-block div.menu-account-block button.profile-photo-block:hover {
+		scale: 1.05;
+	}
+
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown div#dynamic-menu-account-block.menu-account-block div.menu-account-block button.profile-photo-block img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 50%;
+	}
+
+	header.header div.right-blocks div#dynamic-account-block.header-block div.guest-block {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+		align-items: flex-end;
+		min-height: 48px;
+		justify-content: center;
+		animation: guestBlockFadeIn 1s ease forwards; /* Animation on appearance */
+	}
+	
+	/* Keyframes for account block appearance */
+	@keyframes guestBlockFadeIn {
+			from {
+					opacity: 0;
+					gap: 0px;
+					transform: translateX(20px); /* Slide in from the right */
+			}
+			to {
+					opacity: 1;
+					gap: 5px;
+					transform: translateX(0);
+			}
+	}
+
+	header.header div.right-blocks div#dynamic-account-block.header-block div.guest-block div.guest-buttons {
+		display: flex;
+		gap: 10px;
+	}
+
+	header.header div.right-blocks div#dynamic-account-block.header-block div.guest-block div.guest-buttons button.guest-button,
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown div#dynamic-menu-account-block.menu-account-block div div.guest-buttons button.guest-button {
+		background: var(--button-bg);
+		border: none;
+		padding: 8px 12px;
+		color: var(--text-primary);
+		cursor: pointer;
+		border-radius: 4px;
+		font-size: 14px;
+		transition: all 0.3s ease-in-out;
+	}
+
+	header.header div.right-blocks div#dynamic-account-block.header-block div.guest-block div.guest-buttons button.guest-button:hover,
+	header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown div#dynamic-menu-account-block.menu-account-block div div.guest-buttons button.guest-button:hover {
+		background: var(--divider-bg);
+		scale: 1.1;
+	}
+
+	@media (max-width: 768px) {
+		header.header {
+			/* шапка мобильной версии*/
+				padding: 10px 18px;
+				min-height: 52px;
+				justify-content: space-between;
+				align-items: center;
+				flex-direction: row !important;
+		}
+
+		header.header div.left-blocks,
+		header.header div.right-blocks {
+				width: auto;
+				min-width: 34px;
+		}
+
+		header.header div.left-blocks div.header-block.logo-block.logo-block,
+		.header > .page-title-block {
+				display: none;
+		}
+
+		header.header div.header-block.logo-title-block {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: 10;
+				max-width: 85%;
+		}
+
+		header.header div.header-block.logo-title-block .logo-block {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+		}
+
+		header.header div.header-block.logo-title-block .logo-block .logo {
+				width: 34px;
+				height: 34px;
+		}
+
+		header.header div.header-block.logo-title-block .logo-block .site-title {
+				font-size: 20px;
+				white-space: nowrap;
+		}
+
+		header.header div.header-block.logo-title-block .logo-block .title-gradient-container {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 4px;
+		}
+
+		header.header div.header-block.logo-title-block .logo-block .title-gradient-container .gradient-block {
+				width: 100%;
+				height: 3px;
+		}
+
+		header.header div.header-block.page-title-block {
+			/* Мобильный шривт названия страницы*/
+				font-size: 16px;
+		}
+
+		header.header div.header-block.logo-title-block .separator {
+			/* ">" между названием и "Главная"*/
+				font-size: 16px;
+				color: var(--text-primary);
+		}
+
+		header.header .left-blocks .location-block {
+				display: none;
+		}
+
+		.menu-dropdown .location-block {
+				display: flex !important;
+				justify-content: center;
+				padding: 16px;
+		}
+
+		header.header div.right-blocks div.header-block.contact-block {
+				display: none;
+		}
+
+		header.header div.right-blocks div.header-block.contact-button-block {
+				display: flex !important;
+				visibility: visible !important;
+		}
+
+		.menu-button {
+				width: 28px;
+				height: 21px;
+		}
+
+		.contact-button {
+				width: 28px;
+				height: 28px;
+		}
+
+		.hamburger {
+				height: 2px;
+		}
+
+		#dynamic-account-block {
+				display: none;
+		}
+
+		.page-title-dropdown {
+				width: 230px;
+				left: auto;
+				right: 0;
+		}
+
+		.profile-photo-block {
+				width: 32px;
+				height: 32px;
+		}
+
+		.menu-account-block .profile-photo-block {
+				width: 40px;
+				height: 40px;
+		}
+
+		header.header div.left-blocks .header-block.location-block div.select {
+				width: 160px;
+				height: 32px;;
+				border-radius: 4px;
+				scale: 1.2;
+		}
+
+		header.header div.left-blocks .header-block.location-block div.select .select-button {
+				font-size: 14px;
+				padding: 0 12px;
+		}
+
+		header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown div.header-block.location-block div.select ul.select-dropdown {
+				max-height: 0;
+				border-radius: 0 0 4px 4px;
+		}
+
+		header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown div.header-block.location-block div.select ul.select-dropdown.active {
+			max-height: 144px;
+		}
+
+		header.header div.left-blocks div.header-block.menu-block nav.menu-dropdown div.header-block.location-block div.select ul.select-dropdown li {
+				padding: 10px 12px;
+				font-size: 14px;
+		}
+		header.header div.header-block.logo-title-block div.header-block.logo-block div.title-gradient-container div.gradient-block {
+			width: 100%;
+			height: 4px;
+		}
+		header.header div.header-block.page-title-block nav.page-title-dropdown {
+			left: -270%;
+		}
+	}
+
+	@media (min-width: 769px) {
+		header.header div.header-block.logo-title-block {
+				display: none;
+		}
+
+		header.header div.left-blocks .logo-block {
+				display: flex;
+		}
+
+		header.header div.header-block.page-title-block {
+				display: block;
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: 10;
+		}
+
+		.contact-button-block {
+				display: none;
+		}
+
+		header.header div.right-blocks div.header-block.contact-block {
+				display: flex;
+		}
+
+		.contact-menu {
+				display: block;
+				position: fixed;
+				top: 0;
+				right: 0;
+				height: 100vh;
+				width: 250px;
+				transform: translateX(100%);
+				opacity: 0;
+				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+		}
+
+		header.header div.left-blocks div.header-block.logo-block div.title-gradient-container {
+				align-items: flex-start;
+		}
+
+		header.header div.left-blocks div.header-block.logo-block div.title-gradient-container div.gradient-block {
+				width: 100%;
+				height: 4px;
+		}
+	}
+
+/* Main dropdown menu styling */
+nav.profile-settings-dropdown {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 240px;
+	background: linear-gradient(135deg, var(--menu-bg-color-1) 0%, var(--menu-bg-color-2) 100%);
+	border-radius: 8px;
+	box-shadow: 0 2px 5px var(--shadow-dark);
+	z-index: 1000;
+	padding: 16px;
+	visibility: hidden;
+	opacity: 0;
+	transform: translate(-50%, -50%) scale(0.95);
+	transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+	display: flex;
+	flex-direction: column;
+	pointer-events: none;
+}
+
+/* Active state */
+nav.profile-settings-dropdown.active {
+	visibility: visible;
+	opacity: 1;
+	transform: translate(-50%, -50%) scale(1);
+	pointer-events: auto;
+}
+
+/* Menu header */
+nav.profile-settings-dropdown div.menu-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 0;
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--text-primary);
+}
+
+/* Close button */
+nav.profile-settings-dropdown div.menu-header button.profile-settings-close {
+	background: none;
+	border: none;
+	font-size: 24px;
+	color: var(--text-primary);
+	cursor: pointer;
+	padding: 4px 8px;
+	opacity: 0.5;
+	transition: opacity 0.3s ease-in-out;
+}
+
+nav.profile-settings-dropdown div.menu-header button.profile-settings-close:hover {
+	opacity: 1;
+}
+
+/* Menu divider */
+nav.profile-settings-dropdown div.menu-divider {
+	height: 1px;
+	background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+	margin: 8px 0;
+	border-radius: 2px;
+}
+
+/* Actions container */
+nav.profile-settings-dropdown div.profile-settings-actions {
+	display: flex;
+	flex-direction: column;
+	padding: 8px 0;
+}
+
+/* Action buttons */
+nav.profile-settings-dropdown div.profile-settings-actions button.profile-settings-action {
+	background: none;
+	border: none;
+	padding: 12px 16px;
+	font-size: 15px;
+	color: var(--text-primary);
+	text-align: left;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	transition: all 0.3s ease-in-out;
+	position: relative;
+}
+
+/* Icon styling */
+nav.profile-settings-dropdown div.profile-settings-actions .action-icon {
+	width: 24px;
+	height: 24px;
+	object-fit: contain;
+}
+
+/* Static accent bar for action buttons */
+nav.profile-settings-dropdown div.profile-settings-actions button.profile-settings-action::after {
+	content: '';
+	width: 4px;
+	height: 20px;
+	background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+	border-radius: 2px;
+	margin-left: auto;
+	opacity: 1; /* Always visible */
+}
+
+/* Hover effect for action buttons */
+nav.profile-settings-dropdown div.profile-settings-actions button.profile-settings-action:hover {
+	background: rgba(255, 255, 255, 0.1);
+	color: var(--text-hover);
+	border-radius: 5px;
+	margin: 0 -5px;
+	gap: 12px;
+}
+
+/* Active state for buttons */
+nav.profile-settings-dropdown div.profile-settings-actions button.profile-settings-action:active {
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 15px;
+	padding: 12px 12px;
+	margin: 4px 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+	from {
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(0.95);
+	}
+	to {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+	}
+}
+
+@keyframes fadeOut {
+	from {
+			opacity: 1;
+			transform: translate(-50%, -50%) scale(1);
+	}
+	to {
+			opacity: 0;
+			transform: translate(-50%, -50%) scale(0.95);
+	}
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+	nav.profile-settings-dropdown {
+			width: 200px;
+			padding: 12px;
+	}
+
+	nav.profile-settings-dropdown div.menu-header {
+			font-size: 14px;
+			padding: 10px 0;
+	}
+
+	nav.profile-settings-dropdown div.profile-settings-actions button.profile-settings-action {
+			font-size: 14px;
+			padding: 10px 12px;
+	}
+
+	nav.profile-settings-dropdown div.profile-settings-actions .action-icon {
+			width: 20px;
+			height: 20px;
+	}
+}
+
+:root {
+	--width-bottom-right-navigation-button: 50px;
+	--height-bottom-right-navigation-button: 50px;
+}
+
+div.bottom-right-navigation-buttons-div {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	margin-bottom: 16px;
+	margin-right: 16px;
+	padding: 4px;
+	width: auto;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+div.bottom-right-navigation-buttons-div button {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	cursor: pointer;
+	transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out, opacity 0.15s ease-in;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	transform: scale(1);
+	z-index: 0;
+	opacity: 0; /* Hidden by default */
+	pointer-events: none; /* Non-clickable by default */
+}
+
+div.bottom-right-navigation-buttons-div button.visible {
+	opacity: 1; /* Visible when scrolling up */
+	pointer-events: auto; /* Clickable when visible */
+}
+
+div.bottom-right-navigation-buttons-div button:hover {
+	transform: scale(1.1);
+	filter: brightness(1.1);
+}
+
+div.bottom-right-navigation-buttons-div button img {
+	width: 90%;
+	height: 90%;
+	object-fit: cover;
+	border-radius: 50%;
+}
+
+div.bottom-right-navigation-buttons-div .wrapper {
+	width: var(--width-bottom-right-navigation-button);
+	height: var(--height-bottom-right-navigation-button);
+	position: relative;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+div.bottom-right-navigation-buttons-div .wrapper .fab {
+	background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+	width: var(--width-bottom-right-navigation-button);
+	height: var(--height-bottom-right-navigation-button);
+	position: relative;
+	z-index: 3;
+	border-radius: 50%;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+	transform: scale(1);
+}
+
+div.bottom-right-navigation-buttons-div .wrapper input:hover ~ .fab,
+div.bottom-right-navigation-buttons-div .wrapper .fab:hover {
+	transform: scale(1.1);
+	filter: brightness(1.1);
+}
+
+div.bottom-right-navigation-buttons-div .wrapper .fab::before,
+div.bottom-right-navigation-buttons-div .wrapper .fab::after {
+	content: "";
+	display: block;
+	position: absolute;
+	border-radius: 4px;
+	background: #fff;
+}
+
+div.bottom-right-navigation-buttons-div .wrapper .fab::before {
+	width: 4px;
+	height: 18px;
+}
+
+div.bottom-right-navigation-buttons-div .wrapper .fab::after {
+	width: 18px;
+	height: 4px;
+}
+
+div.bottom-right-navigation-buttons-div .wrapper .fac {
+	width: calc(var(--width-bottom-right-navigation-button) + 16px);
+	height: 200px;
+	border-radius: 64px;
+	position: absolute;
+	background: #fff;
+	z-index: 2;
+	padding: 0.5rem 0;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	display: none;
+	visibility: hidden;
+	pointer-events: none;
+	top: -140px;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	transition: opacity 0.2s ease-in 0.2s, top 0.2s ease-in 0.2s, width 0.1s ease-in 0.2s, visibility 0.2s ease-in 0.2s;
+}
+
+div.bottom-right-navigation-buttons-div .wrapper .fac a {
+	display: block;
+	width: calc(var(--width-bottom-right-navigation-button) - 2px);
+	height: calc(var(--height-bottom-right-navigation-button) - 2px);
+	text-align: center;
+	border-radius: 50%;
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+div.bottom-right-navigation-buttons-div .wrapper .fac a:hover {
+	scale: 1.1;
+}
+
+div.bottom-right-navigation-buttons-div .wrapper .fac a img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+	display: block;
+	background: #000;
+	border: 2px solid #000;
+}
+
+div.bottom-right-navigation-buttons-div .wrapper input.toggle-checkbox {
+	height: 100%;
+	width: 100%;
+	border-radius: 50%;
+	cursor: pointer;
+	position: absolute;
+	z-index: 5;
+	opacity: 0;
+	pointer-events: auto;
+}
+
+div.bottom-right-navigation-buttons-div .wrapper input:checked ~ .fab {
+	animation: fab-animation 0.4s ease-out forwards;
+}
+
+div.bottom-right-navigation-buttons-div .wrapper input:checked ~ .fac {
+	display: flex;
+	visibility: visible;
+	pointer-events: auto;
+	width: calc(var(--width-bottom-right-navigation-button) + 16px);
+	height: 200px;
+	animation: fac-animation 0.4s ease-out forwards 0.2s;
+	top: -210px;
+	opacity: 1;
+}
+
+div.bottom-right-navigation-buttons-div:has(.wrapper input:checked) button {
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.15s ease-in;
+}
+
+@keyframes fab-animation {
+	0% {
+			transform: rotate(0) scale(1);
+	}
+	20% {
+			transform: rotate(60deg) scale(0.93);
+	}
+	55% {
+			transform: rotate(35deg) scale(0.97);
+	}
+	80% {
+			transform: rotate(48deg) scale(0.94);
+	}
+	100% {
+			transform: rotate(45deg) scale(0.95);
+	}
+}
+
+@keyframes fac-animation {
+	0% {
+			transform: scale(1, 1);
+	}
+	33% {
+			transform: scale(0.95, 1.05);
+	}
+	66% {
+			transform: scale(1.05, 0.95);
+	}
+	100% {
+			transform: scale(1, 1);
+	}
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+	/* Hide the checkbox */
+	div.bottom-right-navigation-buttons-div .wrapper input.toggle-checkbox {
+			display: none;
+	}
+
+	/* Adjust wrapper for mobile */
+	div.bottom-right-navigation-buttons-div .wrapper.mobile-adaptive {
+			width: 100%;
+			height: auto;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			border-radius: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 3;
+	}
+
+	/* Stretch and style fac, override desktop styles */
+	div.bottom-right-navigation-buttons-div .wrapper .fac {
+			width: 100% !important;
+			height: auto !important;
+			background: transparent !important;
+			border-radius: 0 !important;
+			position: fixed !important;
+			bottom: 0 !important;
+			left: 0 !important;
+			top: auto !important;
+			opacity: 1 !important;
+			padding: 0.5rem !important;
+			display: flex !important;
+			visibility: visible !important;
+			pointer-events: auto !important;
+			flex-direction: row !important;
+			justify-content: center !important;
+			gap: 2rem !important;
+			box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2) !important;
+			transition: none !important;
+	}
+
+	/* Ensure fac is not affected by checked state */
+	div.bottom-right-navigation-buttons-div .wrapper input:checked ~ .fac {
+			width: 100% !important;
+			height: auto !important;
+			top: auto !important;
+			animation: none !important;
+	}
+
+	/* Adjust fac links */
+	div.bottom-right-navigation-buttons-div .wrapper .fac a {
+			width: 48px;
+			height: 48px;
+			border: none;
+			margin: 0;
+	}
+
+	/* Hide fab on mobile */
+	div.bottom-right-navigation-buttons-div .wrapper .fab {
+			display: none;
+	}
+
+	/* Adjust button position and ensure visibility when scrolling up */
+	div.bottom-right-navigation-buttons-div button {
+			margin-bottom: 70px;
+			opacity: 0 !important; /* Hidden by default, overridden by .visible */
+			pointer-events: none !important;
+	}
+
+	div.bottom-right-navigation-buttons-div button.visible {
+			opacity: 1 !important;
+			pointer-events: auto !important;
+	}
+}

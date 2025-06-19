@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товар</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/login.css">
+
+		<link rel="stylesheet" href="css/cabinet.css">
+
+<body>
+    <header class="header">
+        <div class="left-blocks">
+            <div class="header-block menu-block">
+                <button class="menu-button" onclick="toggleMenu()">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+                <nav class="menu-dropdown">
+                    <div class="menu-header">
+                        <span>Навигация</span>
+                        <button class="close-menu" onclick="closeMenu()">✕</button>
+                    </div>
+                    <div class="menu-divider"></div>
+                    <div class="header-block location-block">
+                        <div class="select">
+                            <div class="select-button" onclick="toggleSelect(this)">Moscow</div>
+                            <ul class="select-dropdown"></ul>
+                        </div>
+                    </div>
+                    <div class="menu-divider"></div>
+                    <ul></ul>
+                    <div id="dynamic-menu-account-block" class="menu-account-block"></div>
+                </nav>
+            </div>
+            <div class="header-block logo-block">
+                <a href="/" class="logo-link">
+                    <img src="img/icons/logo.png" alt="Site Logo" class="logo" style="border-radius: 50%; background: #fff;">
+                </a>
+                <div class="title-gradient-container">
+                    <h1 class="site-title">Инвест</h1>
+                    <div class="gradient-block"></div>
+                </div>
+            </div>
+            <div class="header-block location-block">
+                <div class="select">
+                    <div class="select-button" onclick="toggleSelect(this)">Moscow</div>
+                    <ul class="select-dropdown"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="header-block page-title-block" onclick="togglePageMenu(this)">Главная
+            <nav class="page-title-dropdown">
+                <div class="menu-header">
+                    <span>Навигация</span>
+                    <button class="close-page-menu" onclick="closePageMenu(this, event)">✕</button>
+                </div>
+                <div class="menu-divider"></div>
+                <ul></ul>
+            </nav>
+        </div>
+        <div class="header-block logo-title-block">
+            <div class="header-block logo-block">
+                <a href="/" class="logo-link">
+                    <img src="img/icons/logo.png" alt="Site Logo" class="logo">
+                </a>
+                <div class="title-gradient-container">
+                    <h1 class="site-title">Инвест</h1>
+                    <div class="gradient-block"></div>
+                </div>
+            </div>
+            <span class="separator">></span>
+            <div class="header-block page-title-block" onclick="togglePageMenu(this)">Главная
+                <nav class="page-title-dropdown">
+                    <div class="menu-header">
+                        <span>Навигация</span>
+                        <button class="close-page-menu" onclick="closePageMenu(this, event)">✕</button>
+                    </div>
+                    <div class="menu-divider"></div>
+                    <ul></ul>
+                </nav>
+            </div>
+        </div>
+        <div class="right-blocks">
+            <div class="header-block contact-block">
+                <div class="contact-item">
+                    <img src="img/icons/envelope.png" alt="Email Icon" class="contact-icon">
+                    <span>info@example.com</span>
+                </div>
+                <div class="contact-item">
+                    <img src="img/icons/phone.png" alt="Phone Icon" class="contact-icon">
+                    <span>+7 (123) 456-78-90</span>
+                </div>
+            </div>
+            <div class="header-block contact-button-block">
+                <button class="contact-button"></button>
+            </div>
+            <nav class="contact-menu">
+                <div class="menu-header">
+                    <span>Контакты</span>
+                    <button class="close-contact" onclick="closeContactMenu()">✕</button>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="contact-block">
+                    <div class="contact-item">
+                        <img src="img/icons/envelope.png" alt="Email Icon" class="contact-icon">
+                        <span>info@example.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <img src="img/icons/phone.png" alt="Phone Icon" class="contact-icon">
+                        <span>+7 (123) 456-78-90</span>
+                    </div>
+                </div>
+            </nav>
+            <div class="header-block" id="dynamic-account-block">
+                <button class="guest-button">Гость</button>
+            </div>
+        </div>
+        <nav class="profile-settings-dropdown">
+            <div class="menu-header">
+                <span>Профиль</span>
+                <button class="profile-settings-close" onclick="closeSettingsMenu()">✕</button>
+            </div>
+            <div class="menu-divider"></div>
+            <div class="profile-settings-actions">
+                <button class="profile-settings-action" onclick="openProfile()">
+                    <img src="img/icons/user.png" alt="Settings Icon" class="action-icon"> Профиль
+                </button>
+                <div class="menu-divider"></div>
+                <button class="profile-settings-action" onclick="logout()">
+                    <img src="img/icons/exit.png" alt="Logout Icon" class="action-icon"> Выйти
+                </button>
+            </div>
+        </nav>
+        <div class="bottom-right-navigation-buttons-div">
+            <button id="scroll-top-button">
+                <img src="img/icons/playUp.png" alt="flag">
+            </button>
+            <div class="wrapper mobile-adaptive">
+                <input type="checkbox" class="toggle-checkbox" />
+                <div class="fab"></div>
+                <div class="fac">
+                    <a href="#" onclick="openProfile()"><img src="img/icons/envelope.png"></a>
+                    <a href="#" onclick="openProfile()"><img src="img/icons/user.png"></a>
+                    <a href="#" onclick="logout()"><img src="img/icons/exit.png"></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-cabinet">
+        <section class="user-card">
+            <div id="user-info">
+                <p>Загрузка...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-separator">
+            <hr>
+            <h3 id="footer-start-h3">Информация</h3>
+        </div>
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+        <div class="footer-wrapper" id="separator-start">
+            <div class="footer-content">
+                <section class="footer-section about">
+                    <h2 class="section-title">О компании</h2>
+                    <div class="footer-divider"></div>
+                    <p class="text-about">
+                        Мы создаем инновационные решения для вашего бизнеса, обеспечивая высокое качество и надежность.
+                    </p>
+                    <p class="text-about">
+                        Наша команда стремится к совершенству, предлагая индивидуальный подход к каждому клиенту.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-btn" aria-label="Facebook">
+                            <img src="img/icons/facebook.png" alt="" class="icon">
+                        </a>
+                        <a href="#" class="social-btn" aria-label="Dribbble">
+                            <img src="img/icons/dribbble.png" alt="" class="icon">
+                        </a>
+                        <a href="#" class="social-btn" aria-label="Twitter">
+                            <img src="img/icons/twitter.png" alt="" class="icon">
+                        </a>
+                        <a href="#" class="social-btn" aria-label="Google Plus">
+                            <img src="img/icons/google-plus.png" alt="" class="icon">
+                        </a>
+                    </div>
+                </section>
+                <section class="footer-section search">
+                    <h2 class="section-title">Поиск</h2>
+                    <div class="footer-divider"></div>
+                    <form class="search-form" role="search">
+                        <input type="search" id="searchInput" class="search-input" placeholder="Поиск..." aria-label="Поиск по сайту">
+                        <button class="search-btn"><img src="img/icons/search.png" alt="Поиск" class="search-icon"><p>Поиск</p></button>
+                    </form>
+                    <ul class="contact-list">
+                        <li class="contact-item">
+                            <img src="img/icons/home.png" alt="" class="contact-icon">
+                            <span>г. Ижевск, ул. Молодёжная, 109</span>
+                            <div class="contact-divider"></div>
+                        </li>
+                        <li class="contact-item">
+                            <img src="img/icons/envelope.png" alt="" class="contact-icon">
+                            <span><a href="mailto:info@example.com">info@example.com</a></span>
+                            <div class="contact-divider"></div>
+                        </li>
+                        <li class="contact-item">
+                            <img src="img/icons/phone.png" alt="" class="contact-icon">
+                            <span><a href="tel:+79511957833">+7 951 195 78 33</a></span>
+                            <div class="contact-divider"></div>
+                        </li>
+                        <li class="contact-item">
+                            <img src="img/icons/phone.png" alt="" class="contact-icon">
+                            <span><a href="tel:+79505205501">+7 950 520 55 01</a></span>
+                            <div class="contact-divider"></div>
+                        </li>
+                    </ul>
+                </section>
+                <section class="footer-section hours">
+                    <h2 class="section-title">Часы работы</h2>
+                    <div class="footer-divider"></div>
+                    <table class="hours-table">
+                        <tbody>
+                            <tr>
+                                <td>Понедельник</td>
+                                <td>8:00 - 21:00</td>
+                            </tr>
+                            <tr>
+                                <td>Вторник</td>
+                                <td>8:00 - 21:00</td>
+                            </tr>
+                            <tr>
+                                <td>Среда</td>
+                                <td>8:00 - 21:00</td>
+                            </tr>
+                            <tr>
+                                <td>Четверг</td>
+                                <td>8:00 - 21:00</td>
+                            </tr>
+                            <tr>
+                                <td>Пятница</td>
+                                <td>8:00 - 01:00</td>
+                            </tr>
+                            <tr class="weekend">
+                                <td>Суббота - Воскресенье</td>
+                                <td>Выходной</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="hours-list">
+                        <li>Понедельник: <span>8:00 - 21:00</span></li>
+                        <li>Вторник: <span>8:00 - 21:00</span></li>
+                        <li>Среда: <span>8:00 - 21:00</span></li>
+                        <li>Четверг: <span>8:00 - 21:00</span></li>
+                        <li>Пятница: <span>8:00 - 01:00</span></li>
+                        <li class="weekend">Суббота - Воскресенье: <span>Выходной</span></li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Все права защищены: <a href="mailto:invest@gmail.com" class="copyright-link">invest@gmail.com</a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cabinet.js"></script>
+</body>
+</html>

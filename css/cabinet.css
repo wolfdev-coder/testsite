@@ -1,0 +1,595 @@
+/* Основной контейнер */
+main.main-cabinet {
+    max-width: 1400px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* Карточка пользователя */
+main.main-cabinet .user-card {
+    max-width: 1200px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+main .user-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+main .user-card h3 {
+    margin: 0 0 20px;
+    color: #2c3e50;
+    text-align: center;
+    font-size: 28px;
+}
+
+/* Информация о пользователе */
+main .user-info p {
+    margin: 12px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+main .user-info p strong {
+    color: #2c3e50;
+}
+
+/* Группа форм */
+main .form-group {
+    margin-bottom: 20px;
+}
+
+main .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+main .form-group input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+main .form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Действия формы */
+main .form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Действия профиля */
+main .profile-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+/* Кнопки */
+main .change-password-btn,
+main .edit-profile-btn,
+main .save-profile-btn,
+main .cancel-btn,
+main .logout-btn,
+main .save-password-btn,
+main .cancel-password-btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main .change-password-btn,
+main .edit-profile-btn,
+main .save-profile-btn,
+main .save-password-btn {
+    background-color: var(--accent-secondary);
+    color: white;
+}
+
+main .cancel-btn,
+main .cancel-password-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+main .logout-btn {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+main .change-password-btn:hover,
+main .edit-profile-btn:hover,
+main .save-profile-btn:hover,
+main .save-password-btn:hover {
+    background-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+main .cancel-btn:hover,
+main .cancel-password-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+main .logout-btn:hover {
+    background-color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Модальное окно */
+main .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+main .modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+main .modal-content .close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+}
+
+main .modal-content h3 {
+    margin: 0 0 25px;
+    text-align: center;
+    color: #2c3e50;
+}
+
+/* Блоки */
+main .user-section,
+main .favorites-section,
+main .cart-section {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Таблицы */
+main .favorites-table,
+main .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+main .favorites-table th,
+main .favorites-table td,
+main .cart-table th,
+main .cart-table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+main .favorites-table th,
+main .cart-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+}
+
+main .favorites-table tr,
+main .cart-table tr {
+    transition: background-color 0.2s ease;
+}
+
+main .favorites-table tr:nth-child(even),
+main .cart-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+main .favorites-table tr:hover,
+main .cart-table tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Изображения в столбце "Изображение" */
+main .cart-table td:first-child,
+main .favorites-table td:first-child {
+    width: 80px;
+    text-align: center;
+}
+
+main .cart-table img,
+main .favorites-table img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+/* Столбцы таблицы корзины */
+main .cart-table th:nth-child(1),
+main .cart-table td:nth-child(1) {
+    width: 80px; /* Изображение */
+}
+
+main .cart-table th:nth-child(2),
+main .cart-table td:nth-child(2) {
+    width: auto; /* Название (растягивается) */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+main .cart-table th:nth-child(3),
+main .cart-table td:nth-child(3) {
+    width: 110px; /* Количество */
+    text-align: center;
+}
+
+main .cart-table th:nth-child(4),
+main .cart-table td:nth-child(4) {
+    width: 120px; /* Цена за единицу */
+    text-align: center;
+}
+
+main .cart-table th:nth-child(5),
+main .cart-table td:nth-child(5) {
+    width: 120px; /* Общая стоимость */
+    text-align: center;
+}
+
+main .cart-table th:nth-child(6),
+main .cart-table td:nth-child(6) {
+    width: 140px; /* Изменить количество */
+    text-align: center;
+}
+
+main .cart-table th:nth-child(7),
+main .cart-table td:nth-child(7) {
+    width: 120px; /* Действия */
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Столбцы таблицы избранного */
+main .favorites-table th:nth-child(1),
+main .favorites-table td:nth-child(1) {
+    width: 80px; /* Изображение */
+}
+
+main .favorites-table th:nth-child(2),
+main .favorites-table td:nth-child(2) {
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+main .favorites-table th:nth-child(3),
+main .favorites-table td:nth-child(3) {
+    width: 120px; /* Цена */
+    text-align: center;
+}
+
+main .favorites-table th:nth-child(4),
+main .favorites-table td:nth-child(4) {
+    width: 150px; /* Производитель */
+    text-align: center;
+}
+
+main .favorites-table th:nth-child(5),
+main .favorites-table td:nth-child(5) {
+    width: 120px; /* Действия */
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* cabinet.css */
+.delivery-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.delivery-table th, .delivery-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+		text-align: left;
+    vertical-align: middle;
+}
+.delivery-table img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+.delivery-table th {
+    text-align: center;
+}
+
+.delivery-table tr td:not(:nth-child(2)) {
+    text-align: center;
+}
+
+/* Status-based text color and shadow for the 6th column (Status) */
+.delivery-table tr.status-can-pickup td:nth-child(6) {
+    color: #2e7d32; /* Dark green for "Можно забрать" */
+    font-weight: bold;
+    text-shadow: 3px 3px 3px rgb(219, 219, 219); /* Subtle black shadow */
+}
+.delivery-table tr.status-preparing td:nth-child(6) {
+    color: #d1ba36; /* Dark orange for "Подготавливается" */
+    font-weight: bold;
+    text-shadow: 3px 3px 3px rgb(219, 219, 219); /* Subtle black shadow */
+}
+.delivery-table tr.status-cancelled td:nth-child(6) {
+    color: #ff0000; /* Dark red for "Отменено" */
+    font-weight: bold;
+    text-shadow: 3px 3px 3px rgb(219, 219, 219); /* Subtle black shadow */
+}
+
+/* Контейнер для кнопок в столбце "Действия" */
+main .action-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+main .table-action-buttons {
+	display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Кнопки количества */
+main .qty-btn {
+    background-color: var(--accent-secondary);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+    min-width: 32px;
+    line-height: 1;
+}
+
+main .qty-btn:hover {
+    background-color: var(--accent-secondary);
+}
+
+main .quantity-value {
+    display: inline-block;
+    min-width: 24px;
+    text-align: center;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* Кнопки удаления и перехода */
+main .remove-favorite-btn,
+main .remove-cart-btn,
+main .go-to-product-btn {
+    background-color: var(--accent-primary);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    font-size: 14px;
+    line-height: 1;
+    width: 100%;
+    text-align: center;
+}
+
+main .go-to-product-btn {
+    background-color: var(--accent-secondary);
+}
+
+main .remove-favorite-btn:hover,
+main .remove-cart-btn:hover {
+    background-color: var(--accent-secondary);
+    transform: translateY(-2px);
+}
+
+main .go-to-product-btn:hover {
+    background-color: var(--accent-secondary);
+    transform: translateY(-2px);
+}
+
+.back-and-order-buttons {
+		display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Кнопка "Назад" */
+main .back-btn {
+    padding: 12px 24px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+main .back-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+.place-order-btn {
+    padding: 12px 24px;
+    background-color: var(--accent-secondary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s, transform 0.1s;
+}
+.place-order-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+.place-order-btn:hover:not(:disabled) {
+    background-color: var(--accent-primary);
+		transform: translateY(-2px);
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    main .user-card {
+        margin: 10px auto;
+        padding: 20px;
+        width: calc(100% - 20px);
+    }
+
+    main .form-actions,
+    main .profile-actions {
+        flex-direction: column;
+    }
+
+    main .change-password-btn,
+    main .edit-profile-btn,
+    main .save-profile-btn,
+    main .cancel-btn,
+    main .logout-btn,
+    main .save-password-btn,
+    main .cancel-password-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Адаптивность таблиц */
+    main .favorites-table,
+    main .cart-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    main .cart-table th:nth-child(6),
+    main .cart-table td:nth-child(6) {
+        width: 120px;
+    }
+
+    main .cart-table th:nth-child(7),
+    main .cart-table td:nth-child(7) {
+        width: 100px;
+    }
+
+    main .favorites-table th:nth-child(5),
+    main .favorites-table td:nth-child(5) {
+        width: 100px;
+    }
+
+    main .qty-btn {
+        padding: 5px 8px;
+        font-size: 12px;
+        min-width: 30px;
+    }
+
+    main .quantity-value {
+        min-width: 20px;
+    }
+
+    main .remove-cart-btn,
+    main .remove-favorite-btn,
+    main .go-to-product-btn {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+    main .cart-table img,
+    main .favorites-table img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Стили для заголовков и количества товаров */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+		padding: 0 20px;
+		color: var(--footer-wave-bg-gradient-color-2);
+}
+
+.section-header h4 {
+    margin: 0;
+    text-align: left;
+		font-size: 24px;
+}
+
+.section-header p.item-count {
+    margin: 0;
+    text-align: right;
+		font-size: 24px;
+}
