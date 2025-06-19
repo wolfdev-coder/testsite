@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Админ-панель</title>
+  <style>
+    :root {
+      --accent-primary: #ffa700;
+      --accent-secondary: #ffca2c;
+      --text-primary: #333;
+      --text-secondary: #666;
+      --bg-primary: #fff;
+      --bg-secondary: #f9f9f9;
+      --border-color: #ddd;
+      --error-color: #d32f2f;
+      --success-color: #2e7d32;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-primary);
+    }
+
+    button[onclick="logout()"] {
+      display: block;
+      margin: 0 auto 2rem;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--error-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    button[onclick="logout()"]:hover {
+      background-color: #b71c1c;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+      background-color: var(--bg-primary);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .tab-nav {
+      padding: 1rem 1.5rem;
+      background-color: var(--bg-secondary);
+      color: var(--text-secondary);
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .tab-nav:hover {
+      background-color: var(--accent-secondary);
+      color: var(--text-primary);
+    }
+
+    .tab-nav.active {
+      background-color: var(--accent-primary);
+      color: var(--bg-primary);
+      font-weight: 700;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 1.5rem;
+      background-color: var(--bg-primary);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Sections */
+    h2 {
+      font-size: 1.75rem;
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+    }
+
+    .add-button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--accent-primary);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin-bottom: 1.5rem;
+    }
+
+    .add-button:hover {
+      background-color: var(--accent-secondary);
+      transform: translateY(-2px);
+    }
+
+    .add-button:active {
+      transform: translateY(0);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      background-color: var(--bg-primary);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: var(--accent-primary);
+      color: var(--bg-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+
+    td {
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: var(--bg-secondary);
+    }
+
+    td img {
+      max-width: 80px;
+      height: auto;
+      border-radius: 4px;
+      vertical-align: middle;
+      margin: 0 2px;
+    }
+
+    /* Table Action Buttons */
+    td button {
+      padding: 0.5rem 1rem;
+      margin: 0.25rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    td button[onclick*="openEditModal"] {
+      background-color: var(--accent-primary);
+      color: var(--bg-primary);
+    }
+
+    td button[onclick*="openEditModal"]:hover {
+      background-color: var(--accent-secondary);
+      transform: translateY(-2px);
+    }
+
+    td button[onclick*="deleteRow"] {
+      background-color: var(--error-color);
+      color: var(--bg-primary);
+    }
+
+    td button[onclick*="deleteRow"]:hover {
+      background-color: #b71c1c;
+      transform: translateY(-2px);
+    }
+
+    td button[onclick*="approveDelivery"] {
+      background-color: var(--success-color);
+      color: var(--bg-primary);
+    }
+
+    td button[onclick*="approveDelivery"]:hover {
+      background-color: #1b5e20;
+      transform: translateY(-2px);
+    }
+
+    td button[onclick*="cancelDelivery"] {
+      background-color: var(--text-secondary);
+      color: var(--bg-primary);
+    }
+
+    td button[onclick*="cancelDelivery"]:hover {
+      background-color: #555;
+      transform: translateY(-2px);
+    }
+
+    /* Empty Table */
+    td[colspan] {
+      padding: 1rem;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    /* Error Messages */
+    .error {
+      color: var(--error-color);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal[style*="display: flex"] {
+      display: flex !important;
+    }
+
+    .modal-content {
+      background-color: var(--bg-primary);
+      padding: 1.5rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      animation: slideIn 0.3s ease;
+    }
+
+    .modal-content h3 {
+      font-size: 1.5rem;
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+    }
+
+    .modal-content h4 {
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      margin: 0.5rem 0;
+    }
+
+    .modal-content form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .modal-content form input,
+    .modal-content form select {
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 1rem;
+      color: var(--text-primary);
+      background-color: var(--bg-secondary);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
+    }
+
+    .modal-content form input:focus,
+    .modal-content form select:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 2px rgba(255, 167, 0, 0.2);
+    }
+
+    .modal-content form input[type="file"] {
+      padding: 0.5rem;
+      background-color: transparent;
+    }
+
+    .modal-content form img {
+      max-width: 80px;
+      height: auto;
+      border-radius: 4px;
+      margin: 0.25rem;
+    }
+
+    .modal-content form button {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      width: 100%;
+    }
+
+    .modal-content button[type="submit"] {
+      background-color: var(--accent-primary);
+      color: var(--bg-primary);
+      font-weight: 500;
+    }
+
+    .modal-content button[type="submit"]:hover {
+      background-color: var(--accent-secondary);
+      transform: translateY(-2px);
+    }
+
+    .modal-content button[type="button"] {
+      background-color: var(--text-secondary);
+      color: var(--bg-primary);
+      font-weight: 500;
+    }
+
+    .modal-content button[type="button"]:hover {
+      background-color: #555;
+      transform: translateY(-2px);
+    }
+
+    .modal-content .close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .modal-content .close:hover {
+      color: var(--accent-primary);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .tabs {
+        flex-direction: column;
+      }
+
+      .tab-nav {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .tab-nav:last-child {
+        border-bottom: none;
+      }
+
+      table {
+        font-size: 0.8rem;
+      }
+
+      th, td {
+        padding: 0.5rem;
+      }
+
+      td button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+        margin: 0.2rem;
+      }
+
+      .modal-content {
+        width: 95%;
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .add-button {
+        width: 100%;
+        text-align: center;
+      }
+
+      td button {
+        display: block;
+        width: 100%;
+        margin: 0.2rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Панель администратора</h1>
+  <button onclick="logout()">Выйти</button>
+
+  <div class="tabs">
+    <div class="tab-nav active" data-tab="users">Пользователи</div>
+    <div class="tab-nav" data-tab="products">Продукты</div>
+    <div class="tab-nav" data-tab="reviews">Отзывы</div>
+    <div class="tab-nav" data-tab="ratings">Рейтинги</div>
+    <div class="tab-nav" data-tab="favorites">Избранное</div>
+    <div class="tab-nav" data-tab="cart">Корзина</div>
+    <div class="tab-nav" data-tab="delivery">Доставка</div>
+  </div>
+
+  <div id="users" class="tab-content active">
+    <div id="users-section">
+      <h2>Пользователи</h2>
+      <button class="add-button" onclick="openAddModal('users')">Добавить</button>
+      <div id="user-error" class="error"></div>
+      <table id="users-table">
+        <thead>
+          <tr><th>ID</th><th>Имя</th><th>Email</th><th>Роль</th><th>Действия</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="products" class="tab-content">
+    <div id="products-section">
+      <h2>Продукты и фотографии</h2>
+      <button class="add-button" onclick="openAddModal('products')">Добавить</button>
+      <div id="product-error" class="error"></div>
+      <table id="products-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Описание</th>
+            <th>Цена</th>
+            <th>Старая цена</th>
+            <th>Логотип</th>
+            <th>Производитель</th>
+            <th>Продано</th>
+            <th>Год выпуска</th>
+            <th>Фотографии</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="reviews" class="tab-content">
+    <div id="reviews-section">
+      <h2>Отзывы</h2>
+      <button class="add-button" onclick="openAddModal('reviews')">Добавить</button>
+      <div id="review-error" class="error"></div>
+      <table id="reviews-table">
+        <thead>
+          <tr><th>ID</th><th>Продукт ID</th><th>Пользователь ID</th><th>Комментарий</th><th>Действия</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="ratings" class="tab-content">
+    <div id="ratings-section">
+      <h2>Рейтинги</h2>
+      <button class="add-button" onclick="openAddModal('ratings')">Добавить</button>
+      <div id="rating-error" class="error"></div>
+      <table id="ratings-table">
+        <thead>
+          <tr><th>ID</th><th>Продукт ID</th><th>Пользователь ID</th><th>Оценка</th><th>Действия</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="favorites" class="tab-content">
+    <div id="favorites-section">
+      <h2>Избранное</h2>
+      <button class="add-button" onclick="openAddModal('favorites')">Добавить</button>
+      <div id="favorite-error" class="error"></div>
+      <table id="favorites-table">
+        <thead>
+          <tr><th>ID</th><th>Пользователь ID</th><th>Продукт ID</th><th>Действия</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="cart" class="tab-content">
+    <div id="cart-section">
+      <h2>Корзина</h2>
+      <button class="add-button" onclick="openAddModal('cart')">Добавить</button>
+      <div id="cart-error" class="error"></div>
+      <table id="cart-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Пользователь ID</th>
+            <th>Продукт ID</th>
+            <th>Количество</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="delivery" class="tab-content">
+    <div id="delivery-section">
+      <h2>Доставка</h2>
+      <button class="add-button" onclick="openAddModal('delivery')">Добавить</button>
+      <div id="delivery-error" class="error"></div>
+      <table id="delivery-table">
+        <thead>
+          <tr><th>ID</th><th>Пользователь ID</th><th>Продукт</th><th>Количество</th><th>Дата</th><th>Время</th><th>Статус</th><th>Действия</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal Container -->
+  <div id="add-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAddModal()">×</span>
+      <div id="modal-form-content"></div>
+    </div>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+.rating-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.rating-container .rating-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    /* background: rgba(255, 255, 255, 0.25) url(../../img/icons/rating-star-extinct.png) no-repeat center center; */
+		background: var(--footer-bg-gradient-color-2) url(../../img/icons/white-rating-star-extinct.png) no-repeat center center;
+    background-size: 24px 24px;
+    border-radius: 10px;
+    transition: transform 0.5s, box-shadow 0.5s, scale 0.5s;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 18px 18px 26px rgba(125, 125, 125, 0.2), -9px -9px 26px rgba(255, 255, 255, 0.2);
+    opacity: 80%;
+}
+
+.rating-container .rating-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../../img/icons/rating-star-burning.png) no-repeat center center;
+    background-size: 24px 24px;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.rating-container .rating-box.hovered::before,
+.rating-container .rating-box.next1::before,
+.rating-container .rating-box.next2::before,
+.rating-container .rating-box.next3::before,
+.rating-container .rating-box.next4::before {
+    opacity: 1;
+}
+
+.rating-container .rating-box.hovered {
+    scale: 1.60;
+    z-index: 1000;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
+    opacity: 95%;
+}
+
+.rating-container .rating-box.prev1,
+.rating-container .rating-box.next1 {
+    scale: 1.35;
+    z-index: 3;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
+    opacity: 90%;
+}
+
+.rating-container .rating-box.prev2,
+.rating-container .rating-box.next2 {
+    scale: 1.10;
+    z-index: 2;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);
+    opacity: 85%;
+}
+
+/* Новое правило */
+.rating-container .rating-box.user-rated::before {
+    opacity: 1;
+}

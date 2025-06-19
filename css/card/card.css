@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:200,3000, 400, 500, 600, 700, 800, 900&display=swap');
+
+body {
+	background: red;
+}
+.card {
+	position: relative;
+	width: 352px;
+	height: 750px;
+	background: transparent; /* в случае чего - менять на желтый transparent / yellow */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 9px;
+	scale: 0.8;
+	margin-left: 25px;
+}
+.card .box {
+	position: relative;
+	width: 100%;
+	height: 480px;
+	background: linear-gradient(135deg, #fff,#cfcdcd);
+	border-radius: 15px;
+}
+.card .box:nth-child(1)::before {
+	content: '';
+	position: absolute;
+	top: 368px;
+	left: -1px;
+	width: 20px;
+	height: 20px;
+	background: transparent;
+	z-index: 10;
+	border-bottom-left-radius: 20px;
+	box-shadow: -6px 6px var(--clr);
+}
+.card .box:nth-child(1)::after {
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	left: 108px;
+	width: 20px;
+	height: 20px;
+	background: transparent;
+	z-index: 10;
+	border-bottom-left-radius: 20px;
+	box-shadow: -6px 6px var(--clr);
+}
+.card .box:nth-child(2) {
+	background: #fff;
+	height: 260px;
+	width: 90%;
+}
+.card .box:nth-child(2)::before {
+	content: '';
+	position: absolute;
+	bottom: 165px;
+	left: -1px;
+	background: transparent;
+	width: 20px;
+	height: 20px;
+	z-index: 10;
+	border-top-left-radius: 20px;
+	box-shadow: -6px -6px var(--clr);
+}
+.card .box:nth-child(2)::after {
+	content: '';
+	position: absolute;
+	top: -1px;
+	left: 105px;
+	background: transparent;
+	width: 20px;
+	height: 20px;
+	z-index: 10;
+	border-top-left-radius: 20px;
+	box-shadow: -6px -6px var(--clr);
+}
+.card .circle {
+	position: absolute;
+	top: calc(70% - 49px);
+	left: -70px;
+	transform: translateY(-50%);
+	width: 180px;
+	height: 180px;
+	background: blue;
+	border-radius: 50%;
+	border: 10px solid var(--clr);
+}
+.card .rating-container {
+	position: absolute;
+	top: 500px;
+	left: calc(90% + 10px);
+	width: 40px;
+	height: 240px;
+	background: transparent;
+}
+.card .circle .imgBx,
+.card .box .imgBx {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	border-radius: 50%;
+}
+.card .box .imgBx {
+	border-radius: 15px;
+}
+.card .circle .imgBx img,
+.card .box .imgBx img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.card .box .content {
+	position: absolute;
+	inset: 0;
+	padding: 10px 10px 20px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	background: #fff;
+	gap: 20px;
+	border-radius: 15px;
+}
+.card .box .content h2 {
+	text-transform: uppercase;
+	font-size: 1.15em;
+	letter-spacing: 0.1em;
+	font-weight: 600;
+	line-height: 1.1em;
+	color: #333;
+}
+.card .box .content span a {
+	font-size: 0.75em;
+	font-weight: 400;
+	letter-spacing: 0.05em;
+	color: #e91e63;
+	text-transform: initial;
+	text-decoration: underline;
+}
+.card .box .content ul {
+	position: relative;
+	bottom: 25%;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	width: 100%;
+	padding: 0 10px;
+	justify-content: space-evenly;
+}
+.card .box .content ul li {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	padding: 0 10px;
+	font-size: 0.85em;
+	font-weight: 500;
+	color: #999;
+}
+.card .box .content ul li:not(:last-child) {
+	border-right: 1px solid #ccc;
+}
+.card .box .content ul li span {
+	font-size: 1.65em;
+	color: #333;
+}
+.card .box .content button.buttonPereyti {
+	position: relative;
+	top: 24px;
+	padding: 8px 30px;
+	border: none;
+	outline: none;
+	background: #ff3d7f;
+	border-radius: 30px;
+	color: #fff;
+	font-size: 1em;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	font-weight: 500;
+	cursor: pointer;
+	border: 5px solid var(--clr);
+	box-shadow: 0 0 0 10px #fff;
+	transition: 0.5s;
+}
+.card .box .content button.buttonPereyti:hover {
+	letter-spacing: 0.5em;
+	background: var(--accent-primary);;
+}
+.card .box .content button.buttonPereyti::before {
+	content: '';
+	position: absolute;
+	top: 24px;
+	left: -29px;
+	width: 20px;
+	height: 20px;
+	background: transparent;
+	border-top-right-radius: 20px;
+	box-shadow: 5px -7px #fff;
+}
+.card .box .content button::after {
+	content: '';
+	position: absolute;
+	top: 24px;
+	right: -29px;
+	width: 20px;
+	height: 20px;
+	background: transparent;	
+	border-top-left-radius: 20px;
+	box-shadow: -5px -7px #fff;
+}
+
+/* ЭТО КНОПКИ ИЗБРАННОЕ И КОРЗИНА */
+.custom-transparent-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-start; /* Изменено с space-between на flex-start */
+    transform: translate(30px, 24%); /* Возвращаем к начальному значению 24% или подстройте под нужное */
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+.custom-child-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    transition: transform 0.5s, box-shadow 0.5s, scale 0.5s;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 18px 18px 26px rgba(125, 125, 125, 0.2), -9px -9px 26px rgba(255, 255, 255, 0.2);
+    opacity: 80%;
+}
+
+.custom-child-block#first-custom-child-block {
+    /* background: rgba(255, 255, 255, 0.25) url(../../img/icons/izbrannoeDisable.png) no-repeat center center; */
+		background: var(--footer-bg-gradient-color-2) url(../../img/icons/izbrannoeDisable.png) no-repeat center center;
+    background-size: 34px 34px;
+}
+
+.custom-child-block#second-custom-child-block {
+    /* background: rgba(255, 255, 255, 0.25) url(../../img/icons/minecartDisable.png) no-repeat center center; */
+		background: var(--footer-bg-gradient-color-2) url(../../img/icons/izbrannoeEnable.png) no-repeat center center;
+    background-size: 28px 28px;
+}
+
+.custom-child-block:hover {
+    scale: 1.35;
+    z-index: 1000;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
+    opacity: 90%;
+}
+
+.button-container {
+    position: absolute;
+    top: 90px; /* Размещаем ниже двух кнопок (40px + 40px + 10px gap) */
+    left: 0;
+    display: none;
+    align-items: center;
+		transition: all 0.5s ease-in-out;
+		transform: translate(2px, -30px);
+}
+
+.button-container[style*="display: flex"] {
+    display: flex !important;
+}
+
+.input-group.quantity_goods {
+    display: flex;
+		flex-direction: column-reverse;
+    align-items: center;
+		justify-content: center;
+    gap: 5px;
+}
+
+.custom-child-block#second-custom-child-block {
+    background: var(--footer-bg-gradient-color-2) url(../../img/icons/minecartDisable.png) no-repeat center center;
+    background-size: 28px 28px;
+}
+
+.custom-child-block#second-custom-child-block.cart-active {
+    background: var(--footer-bg-gradient-color-2) url(../../img/icons/minecartActive.png) no-repeat center center;
+    background-size: 28px 28px;
+}
+
+.cart-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 2px 5px;
+}
+
+.cart-increment, .cart-decrement {
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+		transition: all 0.5s ease-in-out;
+}
+
+.cart-increment:hover, .cart-decrement:hover {
+    background: var(--accent-secondary);
+}
+
+.cart-quantity {
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 20px;
+    text-align: center;
+}
+

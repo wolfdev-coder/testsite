@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="css/card/card.css">
+    <link rel="stylesheet" href="css/card/flipper.css">
+    <link rel="stylesheet" href="css/card/slider.css">
+    <link rel="stylesheet" href="css/card/price.css">
+
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <title>Products</title>
+    <style>
+        .guest-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+				#price-min::-webkit-slider-thumb {
+					background: var(--accent-primary); /* Замените на нужный цвет, например, красный */
+					-webkit-appearance: none;
+					width: 10px;
+					height: 20px;
+					border-radius: 4px;
+					cursor: pointer;
+				}
+
+				#price-min::-moz-range-thumb {
+					background: var(--accent-primary); /* Тот же цвет для Firefox */
+					width: 10px;
+					height: 20px;
+					border-radius: 4px;
+					cursor: pointer;
+				}
+
+				#price-max::-webkit-slider-thumb {
+					background: var(--accent-primary); /* Замените на нужный цвет, например, красный */
+					-webkit-appearance: none;
+					width: 10px;
+					height: 20px;
+					border-radius: 4px;
+					cursor: pointer;
+				}
+
+				#price-max::-moz-range-thumb {
+					background: var(--accent-primary); /* Тот же цвет для Firefox */
+					width: 10px;
+					height: 20px;
+					border-radius: 4px;
+					cursor: pointer;
+				}
+
+				#year-min::-webkit-slider-thumb {
+					background: var(--accent-primary); /* Замените на нужный цвет, например, красный */
+					-webkit-appearance: none;
+					width: 10px;
+					height: 20px;
+					border-radius: 4px;
+					cursor: pointer;
+				}
+
+				#year-min::-moz-range-thumb {
+					background: var(--accent-primary); /* Тот же цвет для Firefox */
+					width: 10px;
+					height: 20px;
+					border-radius: 4px;
+					cursor: pointer;
+				}
+
+				#year-max::-webkit-slider-thumb {
+					background: var(--accent-primary); /* Замените на нужный цвет, например, красный */
+					-webkit-appearance: none;
+					width: 10px;
+					height: 20px;
+					border-radius: 4px;
+					cursor: pointer;
+				}
+
+				#year-max::-moz-range-thumb {
+					background: var(--accent-primary); /* Тот же цвет для Firefox */
+					width: 10px;
+					height: 20px;
+					border-radius: 4px;
+					cursor: pointer;
+				}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="left-blocks">
+            <div class="header-block menu-block">
+                <button class="menu-button" onclick="toggleMenu()">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+                <nav class="menu-dropdown">
+                    <div class="menu-header">
+                        <span>Навигация</span>
+                        <button class="close-menu" onclick="closeMenu()">✕</button>
+                    </div>
+                    <div class="menu-divider"></div>
+                    <div class="header-block location-block">
+                        <div class="select">
+                            <div class="select-button" onclick="toggleSelect(this)">Moscow</div>
+                            <ul class="select-dropdown"></ul>
+                        </div>
+                    </div>
+                    <div class="menu-divider"></div>
+                    <ul></ul>
+                    <div id="dynamic-menu-account-block" class="menu-account-block"></div>
+                </nav>
+            </div>
+            <div class="header-block logo-block">
+                <a href="/" class="logo-link">
+                    <img src="img/icons/logo.png" alt="Site Logo" class="logo" style="border-radius: 50%; background: #fff;">
+                </a>
+                <div class="title-gradient-container">
+                    <h1 class="site-title">Инвест</h1>
+                    <div class="gradient-block"></div>
+                </div>
+            </div>
+            <div class="header-block location-block">
+                <div class="select">
+                    <div class="select-button" onclick="toggleSelect(this)">Moscow</div>
+                    <ul class="select-dropdown"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="header-block page-title-block" onclick="togglePageMenu(this)">Главная
+            <nav class="page-title-dropdown">
+                <div class="menu-header">
+                    <span>Навигация</span>
+                    <button class="close-page-menu" onclick="closePageMenu(this, event)">✕</button>
+                </div>
+                <div class="menu-divider"></div>
+                <ul></ul>
+            </nav>
+        </div>
+        <div class="header-block logo-title-block">
+            <div class="header-block logo-block">
+                <a href="/" class="logo-link">
+                    <img src="img/icons/logo.png" alt="Site Logo" class="logo">
+                </a>
+                <div class="title-gradient-container">
+                    <h1 class="site-title">Инвест</h1>
+                    <div class="gradient-block"></div>
+                </div>
+            </div>
+            <span class="separator">></span>
+            <div class="header-block page-title-block" onclick="togglePageMenu(this)">Главная
+                <nav class="page-title-dropdown">
+                    <div class="menu-header">
+                        <span>Навигация</span>
+                        <button class="close-page-menu" onclick="closePageMenu(this, event)">✕</button>
+                    </div>
+                    <div class="menu-divider"></div>
+                    <ul></ul>
+                </nav>
+            </div>
+        </div>
+        <div class="right-blocks">
+            <div class="header-block contact-block">
+                <div class="contact-item">
+                    <img src="img/icons/envelope.png" alt="Email Icon" class="contact-icon">
+                    <span>info@example.com</span>
+                </div>
+                <div class="contact-item">
+                    <img src="img/icons/phone.png" alt="Phone Icon" class="contact-icon">
+                    <span>+7 (123) 456-78-90</span>
+                </div>
+            </div>
+            <div class="header-block contact-button-block">
+                <button class="contact-button"></button>
+            </div>
+            <nav class="contact-menu">
+                <div class="menu-header">
+                    <span>Контакты</span>
+                    <button class="close-contact" onclick="closeContactMenu()">✕</button>
+                </div>
+                <div class="menu-divider"></div>
+                <div class="contact-block">
+                    <div class="contact-item">
+                        <img src="img/icons/envelope.png" alt="Email Icon" class="contact-icon">
+                        <span>info@example.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <img src="img/icons/phone.png" alt="Phone Icon" class="contact-icon">
+                        <span>+7 (123) 456-78-90</span>
+                    </div>
+                </div>
+            </nav>
+            <div class="header-block" id="dynamic-account-block">
+                <button class="guest-button">Гость</button>
+            </div>
+        </div>
+        <nav class="profile-settings-dropdown">
+            <div class="menu-header">
+                <span>Профиль</span>
+                <button class="profile-settings-close" onclick="closeSettingsMenu()">✕</button>
+            </div>
+            <div class="menu-divider"></div>
+            <div class="profile-settings-actions">
+                <button class="profile-settings-action" onclick="openProfile()">
+                    <img src="img/icons/user.png" alt="Settings Icon" class="action-icon"> Профиль
+                </button>
+                <div class="menu-divider"></div>
+                <button class="profile-settings-action" onclick="logout()">
+                    <img src="img/icons/exit.png" alt="Logout Icon" class="action-icon"> Выйти
+                </button>
+            </div>
+        </nav>
+        <div class="bottom-right-navigation-buttons-div">
+            <button id="scroll-top-button">
+                <img src="img/icons/playUp.png" alt="flag">
+            </button>
+            <div class="wrapper mobile-adaptive">
+                <input type="checkbox" class="toggle-checkbox" />
+                <div class="fab"></div>
+                <div class="fac">
+                    <a href="#" onclick="openProfile()"><img src="img/icons/envelope.png"></a>
+                    <a href="#" onclick="openProfile()"><img src="img/icons/user.png"></a>
+                    <a href="#" onclick="logout()"><img src="img/icons/exit.png"></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="header">
+            <div class="header-content">
+                <h2>Товары (n)</h2>
+                <div class="header-actions">
+                    <form class="header-search-form" role="search">
+                        <input type="search" id="main-searchInput" class="header-search-input" placeholder="Поиск..." aria-label="Поиск по сайту">
+                        <button class="header-search-btn">
+                            <svg class="header-search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 6.46 13.54 4 10.5 4C7.46 4 5 6.46 5 9.5C5 12.54 7.46 15 10.5 15C12.11 15 13.59 14.41 14.73 13.43L15 13.71V14.5L18 17.49L17.49 18L14.5 15.01V14.5L15.5 14ZM10.5 13C8.56 13 7 11.44 7 9.5C7 7.56 8.56 6 10.5 6C12.44 6 14 7.56 14 9.5C14 11.44 12.44 13 10.5 13Z" fill="white"/>
+                            </svg>
+                            <p>Поиск</p>
+                        </button>
+                    </form>
+                    <button class="toggle-button" onclick="toggleFilters()">Показать фильтры</button>
+                </div>
+            </div>
+        </section>
+        <div class="filters-container">
+            <aside class="filters">
+                <div class="filters-header">
+                    <h2>Фильтрация:</h2>
+                    <button class="close-button" onclick="toggleFilters()">×</button>
+                </div>
+                <div class="filters-content">
+        <div class="filter-group">
+            <label for="product-name-filter">Название товара:</label>
+            <select id="product-name-filter" class="filter-select">
+                <option value="" disabled selected>Выберите товар</option>
+            </select>
+            <label for="firm-name-filter">Фирма-производитель:</label>
+            <select id="firm-name-filter" class="filter-select">
+                <option value="" disabled selected>Выберите фирму</option>
+            </select>
+            <div class="price-filter">
+                <label>Цена:</label>
+                <div class="range-slider">
+                    <div class="range-values">
+                        <span id="price-min-value">0 ₽</span>
+                        <span id="price-max-value">1000 ₽</span>
+                    </div>
+                    <div class="range-track">
+                        <input type="range" id="price-min" min="0" max="1000" value="0">
+                        <input type="range" id="price-max" min="0" max="1000" value="1000">
+                    </div>
+                </div>
+            </div>
+						<div class="year-filter">
+								<label>Год изготовления:</label>
+								<div class="range-slider">
+										<div class="range-values">
+												<span id="year-min-value">2010</span>
+												<span id="year-max-value">2025</span>
+										</div>
+										<div class="range-track">
+												<input type="range" id="year-min" min="2010" max="2025" value="2010">
+												<input type="range" id="year-max" min="2010" max="2025" value="2025">
+										</div>
+								</div>
+						</div>
+            <button id="clear-filters-btn" class="clear-filters-btn">Очистить фильтры</button>
+            <div id="filter-flow-layout" class="filter-flow-layout"></div>
+        </div>
+    </div>
+            </aside>
+        </div>
+        <article class="products-list">
+            <h2>Список товаров:</h2>
+            <div class="sort-cards-container" id="sort-cards-container">
+                <label for="cards-per-page">Карточек на странице: </label>
+                <select id="cards-per-page" class="cards-per-page-select" aria-label="Карточек на странице">
+                    <!-- Опции добавляются динамически в JS -->
+                </select>
+                <label for="sort-options">Сортировка: </label>
+                <select id="sort-options" class="sort-options-select" aria-label="Сортировка">
+                    <option value="none">Нет</option>
+                    <option value="name-asc">По названию (А-Я)</option>
+                    <option value="name-desc">По названию (Я-А)</option>
+                    <option value="rating-desc">По рейтингу (высокий - низкий)</option>
+                    <option value="rating-asc">По рейтингу (низкий - высокий)</option>
+                    <option value="price-desc">По цене (высокая - низкая)</option>
+                    <option value="price-asc">По цене (низкая - высокая)</option>
+                    <option value="reviews-desc">По отзывам (много - мало)</option>
+                    <option value="reviews-asc">По отзывам (мало - много)</option>
+                </select>
+            </div>
+            <div class="cards-container" id="cards-container">
+                <!-- Карточки будут добавляться динамически через JavaScript -->
+            </div>
+            <div class="count-cards-container" id="count-cards-container">
+                <!-- Кнопки для карточек будут добавляться динамически через JavaScript -->
+            </div>
+        </article>
+				<section class="section-footer">
+						<div class="section-footer-content">
+								<p> </p>
+								<p> </p>
+								<p> </p>
+								<p> </p>
+								<p> </p>
+						</div>
+				</section>
+        <div class="overlay" onclick="toggleFilters()"></div>
+				<article class="auth-modal__container">
+        <div class="auth-modal__block">
+            <section class="auth-modal__block-item">
+                <h2 class="auth-modal__block-item-title">У вас уже есть аккаунт?</h2>
+                <button class="auth-modal__block-item-btn auth-modal__signin-btn">Войти</button>
+            </section>
+            <section class="auth-modal__block-item">
+                <h2 class="auth-modal__block-item-title">У вас нет аккаунта?</h2>
+                <button class="auth-modal__block-item-btn auth-modal__signup-btn">Зарегистрироваться</button>
+            </section>
+        </div>
+        <div class="auth-modal__form-box">
+            <form id="loginForm" class="auth-modal__form auth-modal__form-signin">
+                <h3 class="auth-modal__form-title">Вход</h3>
+                <div class="auth-modal__div-input">
+                    <div class="auth-modal__input-wrapper">
+                        <input type="email" id="loginEmail" class="auth-modal__form-input" placeholder=" " required>
+                        <label for="loginEmail" class="auth-modal__input-label">Логин</label>
+                    </div>
+                    <div class="auth-modal__input-wrapper">
+                        <input type="password" id="loginPassword" class="auth-modal__form-input" placeholder=" " required>
+                        <label for="loginPassword" class="auth-modal__input-label">Пароль</label>
+                    </div>
+                </div>
+                <div class="auth-modal__checkbox">
+                    <label>
+                        <input type="checkbox" id="loginAgreement" class="auth-modal__checkbox-input">
+                        Продолжая, вы соглашаетесь с <a href="#" target="_blank">Политикой конфиденциальности</a> и <a href="#" target="_blank">Пользовательским соглашением</a>
+                    </label>
+                </div>
+                <div class="auth-modal__div-btn">
+                    <p>
+                        <button type="submit" class="auth-modal__form-btn" disabled>Войти</button>
+                    </p>
+                </div>
+            </form>
+            <form id="registerForm" class="auth-modal__form auth-modal__form-signup">
+                <h3 class="auth-modal__form-title">Регистрация</h3>
+                <div class="auth-modal__div-input">
+                    <div class="auth-modal__input-wrapper">
+                        <input type="text" id="registerUsername" class="auth-modal__form-input" placeholder=" " required>
+                        <label for="registerUsername" class="auth-modal__input-label">Имя</label>
+                    </div>
+                    <div class="auth-modal__input-wrapper">
+                        <input type="email" id="registerEmail" class="auth-modal__form-input" placeholder=" " required>
+                        <label for="registerEmail" class="auth-modal__input-label">Email</label>
+                    </div>
+                    <div class="auth-modal__input-wrapper">
+                        <input type="password" id="registerPassword" class="auth-modal__form-input" placeholder=" " required>
+                        <label for="registerPassword" class="auth-modal__input-label">Пароль</label>
+                    </div>
+                    <div class="auth-modal__input-wrapper">
+                        <input type="password" id="confirmPassword" class="auth-modal__form-input" placeholder=" " required>
+                        <label for="confirmPassword" class="auth-modal__input-label">Подтвердите пароль</label>
+                    </div>
+                    <div class="auth-modal__input-wrapper">
+                        <select id="role" class="auth-modal__form-input" required>
+                            <option value="" disabled selected hidden></option>
+                            <option value="user">Пользователь</option>
+                            <option value="admin">Администратор</option>
+                        </select>
+                        <label for="role" class="auth-modal__input-label">Роль</label>
+                    </div>
+                </div>
+                <div class="auth-modal__checkbox">
+                    <label>
+                        <input type="checkbox" id="registerAgreement" class="auth-modal__checkbox-input">
+                        Продолжая, вы соглашаетесь с <a href="#" target="_blank">Политикой конфиденциальности</a> и <a href="#" target="_blank">Пользовательским соглашением</a>
+                    </label>
+                </div>
+                <div class="auth-modal__div-btn">
+                    <p>
+                        <button type="submit" class="auth-modal__form-btn auth-modal__form-btn-signup" disabled>Зарегистрироваться</button>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-separator">
+            <hr>
+            <h3 id="footer-start-h3">Информация</h3>
+        </div>
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+        <div class="footer-wrapper" id="separator-start">
+            <div class="footer-content">
+                <section class="footer-section about">
+                    <h2 class="section-title">О компании</h2>
+                    <div class="footer-divider"></div>
+                    <p class="text-about">
+                        Мы создаем инновационные решения для вашего бизнеса, обеспечивая высокое качество и надежность.
+                    </p>
+                    <p class="text-about">
+                        Наша команда стремится к совершенству, предлагая индивидуальный подход к каждому клиенту.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-btn" aria-label="Facebook">
+                            <img src="img/icons/facebook.png" alt="" class="icon">
+                        </a>
+                        <a href="#" class="social-btn" aria-label="Dribbble">
+                            <img src="img/icons/dribbble.png" alt="" class="icon">
+                        </a>
+                        <a href="#" class="social-btn" aria-label="Twitter">
+                            <img src="img/icons/twitter.png" alt="" class="icon">
+                        </a>
+                        <a href="#" class="social-btn" aria-label="Google Plus">
+                            <img src="img/icons/google-plus.png" alt="" class="icon">
+                        </a>
+                    </div>
+                </section>
+                <section class="footer-section search">
+                    <h2 class="section-title">Поиск</h2>
+                    <div class="footer-divider"></div>
+                    <form class="search-form" role="search">
+                        <input type="search" id="searchInput" class="search-input" placeholder="Поиск..." aria-label="Поиск по сайту">
+                        <button class="search-btn"><img src="img/icons/search.png" alt="Поиск" class="search-icon"><p>Поиск</p></button>
+                    </form>
+                    <ul class="contact-list">
+                        <li class="contact-item">
+                            <img src="img/icons/home.png" alt="" class="contact-icon">
+                            <span>г. Ижевск, ул. Молодёжная, 109</span>
+                            <div class="contact-divider"></div>
+                        </li>
+                        <li class="contact-item">
+                            <img src="img/icons/envelope.png" alt="" class="contact-icon">
+                            <span><a href="mailto:info@example.com">info@example.com</a></span>
+                            <div class="contact-divider"></div>
+                        </li>
+                        <li class="contact-item">
+                            <img src="img/icons/phone.png" alt="" class="contact-icon">
+                            <span><a href="tel:+79511957833">+7 951 195 78 33</a></span>
+                            <div class="contact-divider"></div>
+                        </li>
+                        <li class="contact-item">
+                            <img src="img/icons/phone.png" alt="" class="contact-icon">
+                            <span><a href="tel:+79505205501">+7 950 520 55 01</a></span>
+                            <div class="contact-divider"></div>
+                        </li>
+                    </ul>
+                </section>
+                <section class="footer-section hours">
+                    <h2 class="section-title">Часы работы</h2>
+                    <div class="footer-divider"></div>
+                    <table class="hours-table">
+                        <tbody>
+                            <tr>
+                                <td>Понедельник</td>
+                                <td>8:00 - 21:00</td>
+                            </tr>
+                            <tr>
+                                <td>Вторник</td>
+                                <td>8:00 - 21:00</td>
+                            </tr>
+                            <tr>
+                                <td>Среда</td>
+                                <td>8:00 - 21:00</td>
+                            </tr>
+                            <tr>
+                                <td>Четверг</td>
+                                <td>8:00 - 21:00</td>
+                            </tr>
+                            <tr>
+                                <td>Пятница</td>
+                                <td>8:00 - 01:00</td>
+                            </tr>
+                            <tr class="weekend">
+                                <td>Суббота - Воскресенье</td>
+                                <td>Выходной</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ul class="hours-list">
+                        <li>Понедельник: <span>8:00 - 21:00</span></li>
+                        <li>Вторник: <span>8:00 - 21:00</span></li>
+                        <li>Среда: <span>8:00 - 21:00</span></li>
+                        <li>Четверг: <span>8:00 - 21:00</span></li>
+                        <li>Пятница: <span>8:00 - 01:00</span></li>
+                        <li class="weekend">Суббота - Воскресенье: <span>Выходной</span></li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 Все права защищены: <a href="mailto:invest@gmail.com" class="copyright-link">invest@gmail.com</a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
+
+    <script src="js/header.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function toggleFilters() {
+            const filtersContainer = document.querySelector('.filters-container');
+            filtersContainer.classList.toggle('active');
+        }
+
+        document.addEventListener('click', (event) => {
+            const filtersContainer = document.querySelector('.filters-container');
+            const toggleButton = document.querySelector('.toggle-button');
+
+            if (filtersContainer.classList.contains('active')) {
+                if (!filtersContainer.contains(event.target) && !toggleButton.contains(event.target)) {
+                    filtersContainer.classList.remove('active');
+                }
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                document.querySelector('.filters-container').classList.remove('active');
+            }
+        });
+				function openProfile() {
+        // Проверяем статус авторизации через API
+        fetch('/auth/status')
+            .then(response => response.json())
+            .then(data => {
+                if (data.isAuthenticated) {
+                    // Если пользователь авторизован — редиректим на cabinet.html
+                    window.location.href = '/cabinet.html';
+                } else {
+                    alert('Для просмотра профиля необходимо войти.');
+                    document.querySelector('.auth-modal__container').style.display = 'flex';
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка проверки авторизации:', error);
+                alert('Не удалось проверить статус авторизации');
+            });
+    }
+    </script>
+</body>
+</html>

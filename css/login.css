@@ -1,0 +1,308 @@
+/* Контейнер модального окна */
+.auth-modal__container {
+    width: 800px;
+    height: 500px;
+    padding: 40px 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+}
+
+.auth-modal__container.auth-modal__visible {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Блок с кнопками выбора (Вход/Регистрация) */
+.auth-modal__block {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background: rgb(47, 52, 63, 0.18);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 25px;
+    border: 1px solid rgb(47, 52, 63, 0.18);
+    box-shadow: 18px 18px 26px rgba(125, 125, 125, 0.5), -9px -9px 26px rgba(255, 255, 255, 0.5);
+}
+
+.auth-modal__block-item {
+    width: 50%;
+    text-align: center;
+}
+
+.auth-modal__block-item-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--footer-bg-gradient-color-2);
+    margin-bottom: 10px;
+		background-color:rgba(255, 255, 255, 0.55);
+		padding: 4px;
+		margin: 10px 60px;
+		border-radius: 12px;
+}
+
+.auth-modal__block-item-btn {
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: white;
+    color: #333;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 25px;
+    transition: transform 0.5s;
+}
+
+.auth-modal__block-item-btn:hover {
+    transform: scale(1.1);
+}
+
+.auth-modal__block-item-btn:active {
+    transform: scale(0.9);
+}
+
+/* Контейнер для форм */
+.auth-modal__form-box {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 10px 10px 60px rgba(255, 167, 0, 0.2), -10px -10px 60px rgba(255, 202, 44, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: left 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.auth-modal__form-box.auth-modal__active {
+    left: 50%;
+}
+
+/* Общие стили для форм */
+.auth-modal__form {
+    width: 100%;
+    padding: 50px;
+    font-size: 16px;
+    position: absolute;
+    transition: left 0.5s;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Уменьшаем gap для формы регистрации */
+.auth-modal__form-signup {
+    gap: 10px; /* Уменьшено с 20px до 10px */
+    left: 100%;
+    transition-delay: 0s;
+}
+
+.auth-modal__form-signin {
+    left: 0;
+    transition-delay: 0.25s;
+}
+
+.auth-modal__form-box.auth-modal__active .auth-modal__form-signin {
+    left: -100%;
+    transition-delay: 0s;
+}
+
+.auth-modal__form-box.auth-modal__active .auth-modal__form-signup {
+    left: 0;
+    transition-delay: 0.25s;
+}
+
+.auth-modal__form-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Стили для обертки input */
+.auth-modal__input-wrapper {
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Уменьшаем margin-top для формы регистрации */
+.auth-modal__form-signup .auth-modal__input-wrapper {
+    margin-top: 10px; /* Уменьшено с 20px до 10px */
+}
+
+/* Стили для input и select */
+.auth-modal__form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #dfe1e5;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.auth-modal__form-input:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 0 0 4px rgba(26, 115, 232, 0.1);
+}
+
+/* Стили для плавающей метки */
+.auth-modal__input-label {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 4px;
+    background-color: transparent; /* Соответствует фону формы */
+    font-size: 16px;
+    color: #5f6368;
+    pointer-events: none;
+    transition: all 0.15s ease-out;
+    border-radius: 8px;
+}
+
+.auth-modal__form-input:focus + .auth-modal__input-label,
+.auth-modal__form-input:not(:placeholder-shown) + .auth-modal__input-label {
+    top: -8px;
+    left: 16px;
+    font-size: 12px;
+    color: #1a73e8;
+}
+
+/* Стили для select */
+.auth-modal__form-input[type="select"],
+.auth-modal__form-input#role {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='%235f6368' d='M7 10l5 5 5-5z'/></svg>") no-repeat right 16px center;
+    padding-right: 40px;
+		background: #fff;
+		color: #5f6368;
+}
+
+/* Контейнер для полей ввода */
+.auth-modal__div-input {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Уменьшено с 4px до 2px */
+}
+
+/* Кнопки формы */
+.auth-modal__form-btn {
+    border: none;
+    cursor: pointer;
+    font-size: inherit;
+    background-color: #03a9f4;
+    color: white;
+    padding: 10px 50px;
+    border-radius: 25px;
+    transition: transform 0.5s;
+}
+
+.auth-modal__form-btn:hover {
+    transform: scale(1.1);
+}
+
+.auth-modal__form-btn:active {
+    transform: scale(0.9);
+}
+
+.auth-modal__form-btn-signup {
+    background-color: red;
+}
+
+.auth-modal__form-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Ссылка для восстановления пароля */
+.auth-modal__form-forgot {
+    color: #333;
+}
+
+.auth-modal__div-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Чекбокс */
+.auth-modal__checkbox {
+    margin-left: 35px;
+    font-size: 14px;
+    color: #333;
+    display: flex;
+}
+
+/* Уменьшаем margin для чекбокса в форме регистрации */
+.auth-modal__form-signup .auth-modal__checkbox {
+    margin: 5px 0; /* Уменьшено с 10px до 5px */
+}
+
+.auth-modal__checkbox-input {
+    margin-right: 8px;
+}
+
+.auth-modal__checkbox a {
+    color: #03a9f4;
+    text-decoration: none;
+}
+
+.auth-modal__checkbox a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .auth-modal__container {
+        max-width: 400px;
+        height: 650px;
+        padding: 0;
+        margin: 0 20px;
+    }
+    .auth-modal__block {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .auth-modal__block-item {
+        width: 100%;
+        padding: 30px 0;
+    }
+    .auth-modal__form-box {
+        width: 100%;
+        height: 500px;
+        box-shadow: none;
+        top: 0;
+    }
+    .auth-modal__form-box.auth-modal__active {
+        top: 150px;
+        left: 0;
+    }
+    /* Уменьшаем отступы для регистрации на мобильных устройствах */
+    .auth-modal__form-signup .auth-modal__input-wrapper {
+        margin-top: 8px; /* Еще меньше для мобильных */
+    }
+    .auth-modal__form-signup .auth-modal__checkbox {
+        margin: 4px 0; /* Еще меньше для мобильных */
+    }
+}
