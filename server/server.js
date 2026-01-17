@@ -31,6 +31,8 @@ for (const [name, setupFn] of Object.entries(routeSetups)) {
     process.exit(1);
   }
 }
+// Например, если ваши html находятся в ../public/
+app.use(express.static(path.join(__dirname, '../')));
 
 setupMiddleware(app);
 
