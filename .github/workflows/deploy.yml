@@ -18,7 +18,7 @@ jobs:
           host: 83.166.246.183
           username: TheWolf1k
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-        script: |
+          script: |
             cd /var/www/testsite
             git pull origin main
             # Установка з��висимостей в папке сервера
