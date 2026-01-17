@@ -1,0 +1,79 @@
+name: Deploy Node.js App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 83.166.246.183
+          username: TheWolf1k
+          key: b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAACFwAAAAdzc2gtcn
+NhAAAAAwEAAQAAAgEAwOjqpF3aRAiJduv0o96a1KmG296GflFkIEtQLo7OBfbZYtJQAoNs
+tTqN8HcLgvwPJLUzNZ+MY7v6cwfZoZIWJ3es9wXFueJMdQ5g9mtlp3KceT0x81o27OqviW
+SZRdsXP8nNXVOPX8Q3pLxpdMAzgkAUH4DTL25rtFXfz7SwqUFklkTgY9+jYtM+pgbxFRyb
+zWY0JkzaxE5HzHxmXjZUPP4j8oVu1oNazfcWE4JSGGr+96SFn0TxxglHzhlug6KkqqHtvn
+er5V5e7nhMHZnvH86nEI1/m34Oe53RQzhkw9/VAME7pnKdCE7T3Q4qBpEwAPNkqoT8fQ7l
+ntvS8iSTdcD0n4VHHF4WV9ccti6aQJYDcsdFkPAdl1PIxLqgOIkRdq4XXBo8c8Y2WuTryU
+gg/762M1y72rbbGVno33ZyTsKw/KDTPFzP0aVnnuhwU29KNngG1ogkGd35Dz7AhkG8pIk1
+v0zogzBq5YGxzYSyan6VEJNkiDLBvYjV8X+ZcSuHSBTi7W2aqzhpxcdwcmu79IFd15NVJY
+c+IVb2JYg5J060S3lW/v8Uwr8EnOfy7YsQxcsbnyA30t9fMO+GhtxvQQmehDEQyLBrewZf
+n1mo0zCRZr/HkoNnAFj85cv/aonAHIVPa7o/d3pPkHtVw0XvKbbMOQ+lni0LKuGKF5ssJw
+MAAAdY/GQhgfxkIYEAAAAHc3NoLXJzYQAAAgEAwOjqpF3aRAiJduv0o96a1KmG296GflFk
+IEtQLo7OBfbZYtJQAoNstTqN8HcLgvwPJLUzNZ+MY7v6cwfZoZIWJ3es9wXFueJMdQ5g9m
+tlp3KceT0x81o27OqviWSZRdsXP8nNXVOPX8Q3pLxpdMAzgkAUH4DTL25rtFXfz7SwqUFk
+lkTgY9+jYtM+pgbxFRybzWY0JkzaxE5HzHxmXjZUPP4j8oVu1oNazfcWE4JSGGr+96SFn0
+TxxglHzhlug6KkqqHtvner5V5e7nhMHZnvH86nEI1/m34Oe53RQzhkw9/VAME7pnKdCE7T
+3Q4qBpEwAPNkqoT8fQ7lntvS8iSTdcD0n4VHHF4WV9ccti6aQJYDcsdFkPAdl1PIxLqgOI
+kRdq4XXBo8c8Y2WuTryUgg/762M1y72rbbGVno33ZyTsKw/KDTPFzP0aVnnuhwU29KNngG
+1ogkGd35Dz7AhkG8pIk1v0zogzBq5YGxzYSyan6VEJNkiDLBvYjV8X+ZcSuHSBTi7W2aqz
+hpxcdwcmu79IFd15NVJYc+IVb2JYg5J060S3lW/v8Uwr8EnOfy7YsQxcsbnyA30t9fMO+G
+htxvQQmehDEQyLBrewZfn1mo0zCRZr/HkoNnAFj85cv/aonAHIVPa7o/d3pPkHtVw0XvKb
+bMOQ+lni0LKuGKF5ssJwMAAAADAQABAAACAA/dmB64kVDzGssrEM3Bax5+atb+cDVHYGK/
+jvKlUBBxguN7xJTQVkp5bF8Qi2PUczJjrLiGTLePKEP5q058g1Hvp8wRL3fgQsWFzze1EY
+E6DeByxf7rtoS5sIIuQeTa5gibAkbgrnQD4UetL0co35OgzYbhw3ytKjKEtYmRpM3m0O0C
+8SmFpRxln0tsWruPxMiZ1UQpIfzvKzyIJqss8LSrei1iCAGggAFchvZHy5SyiBG5+DtnIj
+NVZBBxSwOMhtp5wuHdWcfdgRU/05LDrEUDa/4ShSI2td441pMeujrZ19zeB5fi6UNbqFUP
+6yjrG/WYDvlvQozOgtgT4D+F/pKV+cIWOTCRgJ6+StMzxwc9lgk7EjOMDjrC1RwT9GHNHO
+4fVj1NjWi/6LCy5aADScyJMy9ccWWkfVSyYeX+4WzBp+oyhvXrCyq5cQGzpkJz3g5rZOZC
+hTksmHK5KkuRaRaKhMwyFuEfyzBO1Yq9tsOwD/vGmxUHvMRup/iJsvEHPiRJbpF4us9lPN
+x1gIjlCIZrXZI30/h9MlmMdvY9fBq5EETrlyHh/4WaeRpfQEKye0A5CyNIfAQfIDpUaUT2
+4NEEDWgJFbkPWpDR3KsR60Mi4v7u/6QHjOhLrDCPLIiY1r9oaaXKGVWnOoXgbXQ1Ej4ltx
+MSpErw/l8J6L6G4kDxAAABAQCA8y4z45XOnWGJPFKdi0zjFV3YIgZxWv7yqPLBqsLuNmui
+ZszKCkP9YClP9N3a/AKbh0UWWRE/vdkMg2YcqE8HqaugPxEOYdQOOgD+Rsy5eWkSL1E4/q
+sybOV0oYTTadXsjDXen96JCxnk3j9rP796RoMF6f/3vvCV1qLH7KYap0CSrW/o6F98bil2
+Z3gB75YXu4qkPds1d3LOzghEnzZZfgZtoiGq2dgtuszGxVzBrXE3O9za9j8C4QW15viEzy
+wHjgqqNobZqt1L1wGuNNeEuZkQ8zJzAxh/QyPauv6MXaAs2AcYD2zQpZEbO1KrlSKk/WJK
+nuetxyTBSwCi9jByAAABAQD0a5kvKh4qldWVRNjlSkxZlfCRJtR/InMkMhQ01J/5eZALkY
+ebmb4g1VAE/qErkYXOgb4x2z9ZGb3QfKNEQCQeZIvn5Z6+NoqNTPHc2M5VawEjJUIcWdPI
+9VCr1XCSeo2vCOlQQwGInB0NGzW8s6TXH2S9tf0TRTX1V5fHb/tCxmtwmWLnIOUEb3pU7m
+Vrt99huVcCsT9V1a1MXlwlDTbzyq9rrufRlqR91NQcXKxXuZe+piN3tqy6bGtIZM7kblUX
+a/Yjwd/atgRDq8eZ5tWg6oAWo3W5ar3y7oLpR5pQCyWwBJKYaXpcUT2nIQbukG7LCt6hvN
+IvGRog2NVvJ5PfAAABAQDKDJV8/7K+5FUX4Lj4p3y1YqQSDPGHaNEdElMAT71Yp2u0RNN1
+rDG8fQkvOm+YoJU/iRFZk6kM3zkp7cjXIJxLWvsaVWtehgFv426a70lYiqcoE/D4NgH7eu
+Uok0dIoxO8eXWfyh2A2MCR8pBoRJ5iOh6mhpHUEsv/MaLgv2qYtzH2stfJPaOfx63XJqae
+3jULseppx7IVJ+tPoH4J3S6EwZ6Hn0gLUwLlxaO7aJENcRQyfE6OOa/r7/K+O8aXH5vT4B
+lI+VDkvDMzq7lrS5T4Iq62IKTaqMUUDmAQ7TWD7P87c8eSKBKO7dZw4KOGFYeIbpQyea1w
+WNgHqSnfOnFdAAAAHVRoZVdvbGYxa0BjdjU4ODIxNzcubm92YWxvY2FsAQIDBAU=
+
+          script: |
+            cd /var/www/testsite
+            git pull origin main
+            # Установка з��висимостей в папке сервера
+            cd server
+            npm install --production
+
+            # Исправляем права на случай, если что-то сбилось
+            sudo chown -R TheWolf1k:TheWolf1k /var/www/testsite
+            # Перезапуск PM2 (перезагрузит все или запустит, если упало)
+            pm2 restart all || pm2 start server.js --name "my-app"
+            pm2 save
